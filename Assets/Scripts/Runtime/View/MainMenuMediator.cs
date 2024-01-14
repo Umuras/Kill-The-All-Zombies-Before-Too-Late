@@ -17,6 +17,11 @@ public class MainMenuMediator : EventMediator
     [Inject]
     public MainMenuView view { get; set; }
 
+    [Inject]
+    public IBundleModel bundleModel { get; set; }
+    [Inject]
+    public IUIPanelModel uIPanelModel { get; set; }
+
 
     public override void OnRegister()
     {
@@ -24,17 +29,17 @@ public class MainMenuMediator : EventMediator
         view.dispatcher.AddListener(MainMenuEvent.Exit, OnExit);
     }
 
-    private void OnPlay(IEvent payload)
+    private void OnPlay()
     {
-        var s = payload.data as string;
-        var x = payload.data;
-        Debug.Log(s + " " + x);
+        bundleModel.AddressableInstantiate(GameAreaKeys.CASTLE, gameObject.transform.parent.transform.parent.transform.parent.transform.parent).Then(() =>
+        {
+            uIPanelModel.ClosePanel(0);
+        });
     }
 
     private void OnExit()
     {
         Application.Quit();
-        Debug.Log("Exit Program.");
     }
 
     public override void OnRemove()

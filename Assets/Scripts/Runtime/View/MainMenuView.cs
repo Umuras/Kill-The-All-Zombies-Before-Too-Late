@@ -8,9 +8,9 @@ public class MainMenuView : EventView
     private Button PlayButton;
     private Button ExitButton;
 
-    public void OnPlayButtonClick(int x, string s)
+    public void OnPlayButtonClick()
     {
-        dispatcher.Dispatch(MainMenuEvent.Play,x);
+        dispatcher.Dispatch(MainMenuEvent.Play);
     }
 
     public void OnExitButtonClick()

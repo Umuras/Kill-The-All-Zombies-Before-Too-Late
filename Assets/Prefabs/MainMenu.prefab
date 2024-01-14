@@ -346,9 +346,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2296397161587316184}
+      - m_Target: {fileID: 5160010566197796257}
         m_TargetAssemblyTypeName: MainMenuView, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: OnPlayButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

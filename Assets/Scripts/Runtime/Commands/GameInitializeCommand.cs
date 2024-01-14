@@ -17,8 +17,6 @@ public class GameInitializeCommand : EventCommand
 
     public override void Execute()
     {
-        uiPanelModel.OpenPanel(0, "MainMenu");
-    }
-
-    
+        uiPanelModel.OpenPanel(0, PanelKeys.MAINMENU);
+    } 
 }
