@@ -6,14 +6,18 @@ using UnityEngine;
 
 public class PlayerCameraMediator : EventMediator
 {
+    [Inject]
+    public PlayerCameraView view { get; set; }
 
-    public override void OnRegister()
+    [Inject]
+    public IPlayerCameraModel playerCameraModel { get; set; }
+
+    [Inject]
+    public IPlayerMoveModel playerMoveModel { get; set; }
+
+    private void Update()
     {
-        Load();
+        playerCameraModel.CameraRotateAndOrientation(view.sensX, view.sensY, gameObject.transform, playerMoveModel.orientation);
     }
 
-    private void Load()
-    {
-
-    }
 }

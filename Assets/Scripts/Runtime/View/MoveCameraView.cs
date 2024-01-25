@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCameraView : EventView
+public class MoveCameraView : EventView
 {
-    public float sensX;
-    public float sensY;
+    public Transform cameraPosition;
 }

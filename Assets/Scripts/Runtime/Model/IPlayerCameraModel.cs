@@ -4,11 +4,8 @@ using UnityEngine;
 
 public interface IPlayerCameraModel
 {
-    float sensX { get; set; }
-    float sensY { get; set; }
-    Transform orientation { get; set; }
     float xRotation { get; set; }
     float yRotation { get; set; }
 
-    void CameraRotateAndOrientation();
+    void CameraRotateAndOrientation(float sensX, float sensY, Transform transform, Transform orientation);
 }

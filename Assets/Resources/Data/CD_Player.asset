@@ -14,5 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData:
     MovementData:
-      ForwardSpeed: 0
-      JumpForce: 0
+      moveSpeed: 7
+      groundDrag: 5
+      jumpForce: 12
+      jumpCooldown: 0.25
+      airMultiplier: 0.4
+      readyToJump: 0
+    inputData:
+      orientation: {fileID: 0}
+    groundData:
+      playerHeight: 2
+      whatIsGround:
+        serializedVersion: 2
+        m_Bits: 64
+      grounded: 0
