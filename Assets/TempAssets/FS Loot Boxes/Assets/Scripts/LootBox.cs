@@ -105,7 +105,10 @@ public class LootBox : MonoBehaviour
         {
             // in case of Key Press method for opening the box,
             // waits for a key to be pressed
-            if (Input.GetKey(keyCode)) Open();
+            if (Input.GetKey(keyCode))
+            {
+                Open();
+            }
         }
     }
 
