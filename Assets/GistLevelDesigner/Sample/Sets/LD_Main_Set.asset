@@ -36,3 +36,5 @@ MonoBehaviour:
     size: 4
   - floorPrefab: {fileID: 125426, guid: 64cb684f38ab4e547a77225cd823cf62, type: 3}
     size: 1
+  - floorPrefab: {fileID: 162066, guid: a4bea53168e748947a482379d038f738, type: 3}
+    size: 1
