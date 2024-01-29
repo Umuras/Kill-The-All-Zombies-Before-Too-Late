@@ -1,9 +1,13 @@
+using strange.extensions.context.api;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMoveModel : IPlayerMoveModel
 {
+    [Inject(ContextKeys.CONTEXT_VIEW)]
+    public GameObject contextView { get; set; }
+
     public PlayerData playerData { get; set; }
     public Transform orientation { get; set; }
 
@@ -17,7 +21,7 @@ public class PlayerMoveModel : IPlayerMoveModel
 
     private Vector3 _moveDirection;
 
-    private MonoBehaviour mono = new MonoBehaviour();
+    //private MonoBehaviour mono = new MonoBehaviour();
 
     [PostConstruct]
     public void GetPlayerData()
@@ -30,13 +34,13 @@ public class PlayerMoveModel : IPlayerMoveModel
         _horizontalInput = Input.GetAxisRaw("Horizontal");
         _verticalInput = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKey(KeyCode.Space) && _readyToJump && _grounded)
+        if (Input.GetKey(KeyCode.Space) && _grounded)
         {
-            _readyToJump = false;
+            //_readyToJump = false;
 
             Jump(rigidbody, transform);
 
-            mono.Invoke(nameof(ResetJump), playerData.MovementData.jumpCooldown);
+            //contextView.GetComponent<MonoBehaviour>().Invoke(nameof(ResetJump), playerData.MovementData.jumpCooldown);
         }
 
     }
@@ -91,6 +95,7 @@ public class PlayerMoveModel : IPlayerMoveModel
 
     public void HandleDrag(Rigidbody rigidbody)
     {
+        //Yerde daha yavaþ gitmeyi saðlýyor.
         if (_grounded)
         {
             rigidbody.drag = playerData.MovementData.groundDrag;

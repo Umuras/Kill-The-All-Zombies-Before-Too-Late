@@ -29,13 +29,13 @@ public class PlayerMoveMediator : EventMediator
     {
         playerMoveModel.MovePlayer(view.rb, view.orientation);
         playerMoveModel.SpeedControl(view.rb);
+        playerMoveModel.HandleDrag(view.rb);
     }
 
     private void Update()
     {
         playerMoveModel.GroundControl(gameObject.transform);
-        playerMoveModel.InputPlayer(view.rb, gameObject.transform);
-        playerMoveModel.HandleDrag(view.rb);
+        playerMoveModel.InputPlayer(view.rb, gameObject.transform); 
     }
 
     public override void OnRemove()

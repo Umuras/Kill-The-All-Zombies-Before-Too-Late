@@ -42226,7 +42226,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelDesign
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7233006478453976474, guid: aa7fce9da5d67214294e4302db6c0c53, type: 3}
+    - {fileID: 6510803250883424902, guid: aa7fce9da5d67214294e4302db6c0c53, type: 3}
     m_RemovedGameObjects:
     - {fileID: 3439155805863444489, guid: aa7fce9da5d67214294e4302db6c0c53, type: 3}
     - {fileID: 7624416987045692011, guid: aa7fce9da5d67214294e4302db6c0c53, type: 3}
@@ -42278,6 +42280,8 @@ PrefabInstance:
     - {fileID: 7100041278862334915, guid: aa7fce9da5d67214294e4302db6c0c53, type: 3}
     - {fileID: 237187048977010421, guid: aa7fce9da5d67214294e4302db6c0c53, type: 3}
     - {fileID: 8061769756144985227, guid: aa7fce9da5d67214294e4302db6c0c53, type: 3}
+    - {fileID: 6543612790968485144, guid: aa7fce9da5d67214294e4302db6c0c53, type: 3}
+    - {fileID: 3673574590485655987, guid: aa7fce9da5d67214294e4302db6c0c53, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6525001049512561154, guid: aa7fce9da5d67214294e4302db6c0c53, type: 3}
       insertIndex: 2
@@ -42307,43 +42311,43 @@ PrefabInstance:
       insertIndex: 167
       addedObject: {fileID: 344315301378603213}
     - targetCorrespondingSourceObject: {fileID: 6525001049512561154, guid: aa7fce9da5d67214294e4302db6c0c53, type: 3}
-      insertIndex: 226
+      insertIndex: 225
       addedObject: {fileID: 3867386797001835058}
     - targetCorrespondingSourceObject: {fileID: 6525001049512561154, guid: aa7fce9da5d67214294e4302db6c0c53, type: 3}
-      insertIndex: 227
+      insertIndex: 226
       addedObject: {fileID: 2334762377153205529}
     - targetCorrespondingSourceObject: {fileID: 6525001049512561154, guid: aa7fce9da5d67214294e4302db6c0c53, type: 3}
-      insertIndex: 228
+      insertIndex: 227
       addedObject: {fileID: 2135968221466967706}
     - targetCorrespondingSourceObject: {fileID: 6525001049512561154, guid: aa7fce9da5d67214294e4302db6c0c53, type: 3}
-      insertIndex: 229
+      insertIndex: 228
       addedObject: {fileID: 4142451665741605685}
     - targetCorrespondingSourceObject: {fileID: 6525001049512561154, guid: aa7fce9da5d67214294e4302db6c0c53, type: 3}
-      insertIndex: 231
+      insertIndex: 230
       addedObject: {fileID: 3678299133451107748}
     - targetCorrespondingSourceObject: {fileID: 6525001049512561154, guid: aa7fce9da5d67214294e4302db6c0c53, type: 3}
-      insertIndex: 237
+      insertIndex: 236
       addedObject: {fileID: 1930830052832445307}
     - targetCorrespondingSourceObject: {fileID: 6525001049512561154, guid: aa7fce9da5d67214294e4302db6c0c53, type: 3}
-      insertIndex: 239
+      insertIndex: 238
       addedObject: {fileID: 3025663430925008904}
     - targetCorrespondingSourceObject: {fileID: 6525001049512561154, guid: aa7fce9da5d67214294e4302db6c0c53, type: 3}
-      insertIndex: 241
+      insertIndex: 240
       addedObject: {fileID: 6763143117964056046}
     - targetCorrespondingSourceObject: {fileID: 6525001049512561154, guid: aa7fce9da5d67214294e4302db6c0c53, type: 3}
-      insertIndex: 257
+      insertIndex: 256
       addedObject: {fileID: 3132761374471114096}
     - targetCorrespondingSourceObject: {fileID: 6525001049512561154, guid: aa7fce9da5d67214294e4302db6c0c53, type: 3}
-      insertIndex: 276
+      insertIndex: 275
       addedObject: {fileID: 7686883685108518919}
     - targetCorrespondingSourceObject: {fileID: 6525001049512561154, guid: aa7fce9da5d67214294e4302db6c0c53, type: 3}
-      insertIndex: 278
+      insertIndex: 277
       addedObject: {fileID: 6159827008413057226}
     - targetCorrespondingSourceObject: {fileID: 6525001049512561154, guid: aa7fce9da5d67214294e4302db6c0c53, type: 3}
-      insertIndex: 282
+      insertIndex: 281
       addedObject: {fileID: 4177644406595319181}
     - targetCorrespondingSourceObject: {fileID: 6525001049512561154, guid: aa7fce9da5d67214294e4302db6c0c53, type: 3}
-      insertIndex: 287
+      insertIndex: 286
       addedObject: {fileID: 3036840497129081510}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa7fce9da5d67214294e4302db6c0c53, type: 3}
