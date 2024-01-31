@@ -37,6 +37,7 @@ public class LootBoxMediator : EventMediator
 
     private void Update()
     {
+        Debug.LogError("Enter Player Value = " + lootBoxModel.isPlayerAround);
         if (lootBoxModel.isPlayerAround)
         {
             if (Input.GetKey(view.keyCode))

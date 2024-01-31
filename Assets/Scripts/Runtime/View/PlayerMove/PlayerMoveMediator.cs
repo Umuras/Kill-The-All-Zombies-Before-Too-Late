@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMoveMediator : EventMediator
 {
@@ -11,6 +12,8 @@ public class PlayerMoveMediator : EventMediator
 
     [Inject]
     public IPlayerMoveModel playerMoveModel { get; set; }
+    [Inject]
+    public ILootBoxModel lootBoxModel { get; set; }
 
     public override void OnRegister()
     {
@@ -21,21 +24,23 @@ public class PlayerMoveMediator : EventMediator
 
     private void Init()
     {
-        view.rb.freezeRotation = true;
+        playerMoveModel.characterController = view.characterController;
         playerMoveModel.orientation = view.orientation;
+        playerMoveModel.inputActions = view.inputActions;
     }
 
     private void FixedUpdate()
     {
-        playerMoveModel.MovePlayer(view.rb, view.orientation);
-        playerMoveModel.SpeedControl(view.rb);
-        playerMoveModel.HandleDrag(view.rb);
+        playerMoveModel.MovePlayer(view.orientation);
+        lootBoxModel.isPlayerAround = playerMoveModel.ThrowRaycast(view.orientation);
     }
 
     private void Update()
     {
-        playerMoveModel.GroundControl(gameObject.transform);
-        playerMoveModel.InputPlayer(view.rb, gameObject.transform); 
+        playerMoveModel.InputPlayer();
+        playerMoveModel.Gravity();
+        playerMoveModel.GravityForce();
+        playerMoveModel.GroundControl();
     }
 
     public override void OnRemove()

@@ -31,7 +31,7 @@ public class MainMenuMediator : EventMediator
 
     private void OnPlay()
     {
-        bundleModel.AddressableInstantiate(GameAreaKeys.CASTLE, gameObject.transform.parent.transform.parent.transform.parent.transform.parent).Then(() =>
+        bundleModel.AddressableInstantiate("TrainingLevel", gameObject.transform.parent.transform.parent.transform.parent.transform.parent).Then(() =>
         {
             uIPanelModel.ClosePanel(0);
         });

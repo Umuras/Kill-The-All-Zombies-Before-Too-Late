@@ -25,7 +25,7 @@ public class GameContext : MVCSContext
         injectionBinder.Bind<IUIPanelModel>().To<UIPanelModel>().ToSingleton();
         injectionBinder.Bind<IPlayerMoveModel>().To<PlayerMoveModel>().ToSingleton();
         injectionBinder.Bind<IPlayerCameraModel>().To<PlayerCameraModel>().ToSingleton();
-        injectionBinder.Bind<ILootBoxModel>().To<LootBoxModel>();
+        injectionBinder.Bind<ILootBoxModel>().To<LootBoxModel>().ToSingleton();
         
         mediationBinder.Bind<MainMenuView>().To<MainMenuMediator>();
         mediationBinder.Bind<UIPanelControllerView>().To<UIPanelControllerMediator>();

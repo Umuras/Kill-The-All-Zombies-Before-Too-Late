@@ -1,22 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public interface IPlayerMoveModel
 {
+    CharacterController characterController { get; set; }
+    InputActionAsset inputActions { get; set; }
     Transform orientation { get; set; }
+
+    Transform groundCheck { get; set; }
 
     PlayerData playerData { get; set; }
 
-    void MovePlayer(Rigidbody rb, Transform orientation);
+    void MovePlayer(Transform transform);
 
-    void InputPlayer(Rigidbody rigidbody, Transform transform);
+    void InputPlayer();
 
-    void SpeedControl(Rigidbody rigidbody);
-    void Jump(Rigidbody rigidbody, Transform transform);
-    void ResetJump();
+    void Jump();
 
-    void GroundControl(Transform transform);
+    void GroundControl();
 
-    void HandleDrag(Rigidbody rigidbody);
+    void Gravity();
+
+    void GravityForce();
+
+    bool ThrowRaycast(Transform orientaion);
 }

@@ -1,27 +1,35 @@
 using strange.extensions.context.api;
+using strange.extensions.mediation.impl;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMoveModel : IPlayerMoveModel
 {
-    [Inject(ContextKeys.CONTEXT_VIEW)]
-    public GameObject contextView { get; set; }
-
+    public InputActionAsset inputActions { get; set; }
     public PlayerData playerData { get; set; }
     public Transform orientation { get; set; }
 
+    public CharacterController characterController { get; set; }
+
+    public Transform groundCheck { get; set; }
+
     private string playerDataPath = "Data/CD_Player";
 
-    private float _horizontalInput;
-    private float _verticalInput;
+    private Vector2 _moveVector;
+    private Vector3 _velocity;
 
-    private bool _readyToJump;
     private bool _grounded;
+    private bool _enterPlayer;
 
     private Vector3 _moveDirection;
 
-    //private MonoBehaviour mono = new MonoBehaviour();
+    private string _inputMoveAction = "Move";
+    private string _inputJumpAction = "Jump";
+
+    private float _gravity = -9.8f;
+    private int _mass = 10;
 
     [PostConstruct]
     public void GetPlayerData()
@@ -29,80 +37,79 @@ public class PlayerMoveModel : IPlayerMoveModel
         playerData = Resources.Load<CD_Player>(playerDataPath).playerData;
     }
 
-    public void InputPlayer(Rigidbody rigidbody, Transform transform)
+    public void InputPlayer()
     {
-        _horizontalInput = Input.GetAxisRaw("Horizontal");
-        _verticalInput = Input.GetAxisRaw("Vertical");
+        //Yeni Input Sistemindeki Player mapi üzerinden Move actiona eriþiyoruz
+        _moveVector = inputActions.FindAction(_inputMoveAction).ReadValue<Vector2>();
 
-        if (Input.GetKey(KeyCode.Space) && _grounded)
+
+        if (inputActions.FindAction(_inputJumpAction).triggered && _grounded)
         {
-            //_readyToJump = false;
-
-            Jump(rigidbody, transform);
-
-            //contextView.GetComponent<MonoBehaviour>().Invoke(nameof(ResetJump), playerData.MovementData.jumpCooldown);
+            Jump();
         }
 
     }
 
-   
-
-    public void MovePlayer(Rigidbody rb, Transform orientation)
+    public void MovePlayer(Transform transform)
     {
-        //calculate movement direction
-        _moveDirection = orientation.forward * _verticalInput + orientation.right * _horizontalInput;
+        //Karakterimizin hareket yönü belirlenmiþ oluyor.
+        _moveDirection = transform.right * _moveVector.x + transform.forward * _moveVector.y;
 
-        //on ground
-        if (_grounded)
+        characterController.Move(_moveDirection * playerData.MovementData.moveSpeed * Time.deltaTime);
+    }
+
+    public void Gravity()
+    {
+        if (_velocity.y < 0 && characterController.isGrounded)
         {
-            rb.AddForce(_moveDirection.normalized * playerData.MovementData.moveSpeed * 10f, ForceMode.Force);
-        } //in air
-        else if (!_grounded)
-        {
-            rb.AddForce(_moveDirection.normalized * playerData.MovementData.moveSpeed * 10f * playerData.MovementData.airMultiplier, ForceMode.Force);
+            _velocity.y = -1;
         }
     }
 
-    public void SpeedControl(Rigidbody rigidbody)
+    public void GravityForce()
     {
-        Vector3 flatVelocity = new Vector3(rigidbody.velocity.x, 0f, rigidbody.velocity.z);
+        _velocity.y += _gravity * _mass * Time.deltaTime;
+        characterController.Move(_velocity * Time.deltaTime);
+    }
 
-        //limit velocity if needed
-        if (flatVelocity.magnitude > playerData.MovementData.moveSpeed)
+    public void GroundControl()
+    {
+        _grounded = characterController.isGrounded;
+    }
+
+    public void Jump()
+    {
+        _velocity.y += Mathf.Sqrt(_gravity * -2 * playerData.MovementData.jumpForce);
+    }
+
+    public bool ThrowRaycast(Transform orientaion)
+    {
+        Ray ray = new Ray(orientation.transform.position, orientation.forward);
+
+        RaycastHit hit;
+
+        Debug.DrawRay(ray.origin, ray.direction * 10f, Color.green);
+
+        if (Physics.Raycast(ray,out hit,5f))
         {
-            Vector3 limitedVelocity = flatVelocity.normalized * playerData.MovementData.moveSpeed;
-            rigidbody.velocity = new Vector3(limitedVelocity.x, rigidbody.velocity.y, limitedVelocity.z);
+            if (hit.collider.gameObject.CompareTag("TreasureChest"))
+            {
+                float distance = Vector3.Distance(orientation.transform.position, hit.collider.transform.position);
+                
+                if (distance <= 2)
+                {
+                    _enterPlayer = true;
+                    Debug.LogError(_enterPlayer);
+                    return _enterPlayer;
+                }
+                else
+                {
+                    _enterPlayer = false;
+                    Debug.LogError(_enterPlayer);
+                    return _enterPlayer;
+                }
+            }
         }
-    }
-
-    public void Jump(Rigidbody rigidbody, Transform transform)
-    {
-        //reset y velocity
-        rigidbody.velocity = new Vector3(rigidbody.velocity.x, 0f, rigidbody.velocity.z);
-
-        rigidbody.AddForce(transform.up * playerData.MovementData.jumpForce, ForceMode.Impulse);
-    }
-
-    public void ResetJump()
-    {
-        _readyToJump = true;
-    }
-
-    public void GroundControl(Transform transform)
-    {
-        _grounded = Physics.Raycast(transform.position, Vector3.down, playerData.groundData.playerHeight * 0.5f + 0.2f, playerData.groundData.whatIsGround);
-    }
-
-    public void HandleDrag(Rigidbody rigidbody)
-    {
-        //Yerde daha yavaþ gitmeyi saðlýyor.
-        if (_grounded)
-        {
-            rigidbody.drag = playerData.MovementData.groundDrag;
-        }
-        else
-        {
-            rigidbody.drag = 0;
-        }
+        return false;
     }
 }
