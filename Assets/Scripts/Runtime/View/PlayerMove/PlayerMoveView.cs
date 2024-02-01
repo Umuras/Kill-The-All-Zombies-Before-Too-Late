@@ -8,6 +8,5 @@ public class PlayerMoveView : EventView
 {
     public Transform orientation;
     public CharacterController characterController;
-    public InputActionAsset inputActions;
     public bool enterPlayer;
 }

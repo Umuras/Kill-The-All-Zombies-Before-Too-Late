@@ -26,13 +26,12 @@ public class PlayerMoveMediator : EventMediator
     {
         playerMoveModel.characterController = view.characterController;
         playerMoveModel.orientation = view.orientation;
-        playerMoveModel.inputActions = view.inputActions;
     }
 
     private void FixedUpdate()
     {
         playerMoveModel.MovePlayer(view.orientation);
-        lootBoxModel.isPlayerAround = playerMoveModel.ThrowRaycast(view.orientation);
+        lootBoxModel.isPlayerAround = playerMoveModel.ThrowRaycast(gameObject.transform);
     }
 
     private void Update()

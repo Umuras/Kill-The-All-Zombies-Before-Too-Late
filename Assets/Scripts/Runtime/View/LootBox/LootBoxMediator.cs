@@ -10,6 +10,8 @@ public class LootBoxMediator : EventMediator
     public LootBoxView view { get; set; }
     [Inject]
     public ILootBoxModel lootBoxModel { get; set; }
+    [Inject]
+    public IInputModel inputModel { get; set; }
 
     public override void OnRegister()
     {
@@ -37,10 +39,9 @@ public class LootBoxMediator : EventMediator
 
     private void Update()
     {
-        Debug.LogError("Enter Player Value = " + lootBoxModel.isPlayerAround);
         if (lootBoxModel.isPlayerAround)
         {
-            if (Input.GetKey(view.keyCode))
+            if (inputModel.playerController.FindAction(PlayerControllerInputActionKeys.Interaction.ToString()).triggered)
             {
                 lootBoxModel.Open(view.animator);
             }

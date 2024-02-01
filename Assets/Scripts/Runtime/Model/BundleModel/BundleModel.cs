@@ -2,8 +2,10 @@ using RSG;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.InputSystem;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using static UnityEditor.AddressableAssets.Build.Layout.BuildLayout;
 
@@ -29,25 +31,25 @@ public class BundleModel : IBundleModel
         return promise;
     }
 
-    //public IPromise<T> AddressableLoad<T>(string addressableKey)
-    //{
-    //    Promise promise = new Promise();
+    public IPromise<InputActionAsset> AddressableLoadInputActionAsset(string inputActionAssetAdress)
+    {
+        Promise<InputActionAsset> promise = new Promise<InputActionAsset>();
 
-    //    AsyncOperationHandle<T> handle = Addressables.LoadAssetAsync<T>(addressableKey);
+        AsyncOperationHandle<InputActionAsset> handle = Addressables.LoadAssetAsync<InputActionAsset>(inputActionAssetAdress);
 
-    //    handle.Completed += asynchandle =>
-    //    {
-    //        if (asynchandle.Status == AsyncOperationStatus.Succeeded)
-    //        {
-    //            promise.Resolve();
-    //        }
-    //        else
-    //        {
-    //            promise.Reject(new Exception());
-    //        }
-    //    };
+        handle.Completed += asynchandle =>
+        {
+            if (asynchandle.Status == AsyncOperationStatus.Succeeded)
+            {
+                promise.Resolve(asynchandle.Result);
+            }
+            else
+            {
+                promise.Reject(new Exception());
+            }
+        };
 
 
-    //    return (IPromise<T>)promise;
-    //}
+        return promise;
+    }
 }

@@ -14,9 +14,21 @@ public class GameInitializeCommand : EventCommand
 
     [Inject]
     public IUIPanelModel uiPanelModel { get; set; }
+    [Inject]
+    public IInputModel inputModel { get; set; }
+
+    private const string PlayerControllerInputActionAsset = "PlayerController";
 
     public override void Execute()
     {
-        uiPanelModel.OpenPanel(0, PanelKeys.MAINMENU);
-    } 
+        //bundleModelde çalýþan fonksiyon çalýþtýktan sonra geri dönüþ deðeri Then((playerController) içindeki parametreye argüman
+        //olarak gönderiliyor.
+        bundleModel.AddressableLoadInputActionAsset(inputActionAssetAdress: PlayerControllerInputActionAsset).Then((playerController) =>
+        {
+            inputModel.playerController = playerController;
+            uiPanelModel.OpenPanel(0, PanelKeys.MAINMENU);
+        });
+        
+    }
+   
 }

@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public interface IPlayerMoveModel
 {
     CharacterController characterController { get; set; }
-    InputActionAsset inputActions { get; set; }
     Transform orientation { get; set; }
 
     Transform groundCheck { get; set; }

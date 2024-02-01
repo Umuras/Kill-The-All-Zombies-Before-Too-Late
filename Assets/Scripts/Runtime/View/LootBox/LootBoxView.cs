@@ -6,7 +6,6 @@ using UnityEngine;
 public class LootBoxView : View
 {
     public string playerTag = "Player";
-    public KeyCode keyCode = KeyCode.E;
     public bool bouncingBox = true;
     public bool closeOnExit;
     public Animator animator;

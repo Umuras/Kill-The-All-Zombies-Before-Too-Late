@@ -7,7 +7,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMoveModel : IPlayerMoveModel
 {
-    public InputActionAsset inputActions { get; set; }
+    [Inject]
+    public IInputModel inputModel { get; set; }
     public PlayerData playerData { get; set; }
     public Transform orientation { get; set; }
 
@@ -25,8 +26,7 @@ public class PlayerMoveModel : IPlayerMoveModel
 
     private Vector3 _moveDirection;
 
-    private string _inputMoveAction = "Move";
-    private string _inputJumpAction = "Jump";
+    private string _treasureChestTag = "TreasureChest";
 
     private float _gravity = -9.8f;
     private int _mass = 10;
@@ -40,19 +40,20 @@ public class PlayerMoveModel : IPlayerMoveModel
     public void InputPlayer()
     {
         //Yeni Input Sistemindeki Player mapi üzerinden Move actiona eriþiyoruz
-        _moveVector = inputActions.FindAction(_inputMoveAction).ReadValue<Vector2>();
+        _moveVector = inputModel.playerController.FindAction(PlayerControllerInputActionKeys.Move.ToString()).ReadValue<Vector2>();
+        
 
-
-        if (inputActions.FindAction(_inputJumpAction).triggered && _grounded)
+        if (inputModel.playerController.FindAction(PlayerControllerInputActionKeys.Jump.ToString()).triggered && _grounded)
         {
             Jump();
         }
-
+        
     }
 
     public void MovePlayer(Transform transform)
     {
-        //Karakterimizin hareket yönü belirlenmiþ oluyor.
+        //Karakterimizin hareket yönü belirlenmiþ oluyor. Kameranýn hareket yönüne göre karakterde o yöne doðru
+        //hareket ediyor
         _moveDirection = transform.right * _moveVector.x + transform.forward * _moveVector.y;
 
         characterController.Move(_moveDirection * playerData.MovementData.moveSpeed * Time.deltaTime);
@@ -84,7 +85,7 @@ public class PlayerMoveModel : IPlayerMoveModel
 
     public bool ThrowRaycast(Transform orientaion)
     {
-        Ray ray = new Ray(orientation.transform.position, orientation.forward);
+        Ray ray = new Ray(orientation.position, orientation.forward);
 
         RaycastHit hit;
 
@@ -92,20 +93,18 @@ public class PlayerMoveModel : IPlayerMoveModel
 
         if (Physics.Raycast(ray,out hit,5f))
         {
-            if (hit.collider.gameObject.CompareTag("TreasureChest"))
+            if (hit.collider.gameObject.CompareTag(_treasureChestTag))
             {
-                float distance = Vector3.Distance(orientation.transform.position, hit.collider.transform.position);
-                
-                if (distance <= 2)
+                float distance = Vector3.Distance(orientation.position, hit.collider.transform.position);
+
+                if (distance <= 3)
                 {
                     _enterPlayer = true;
-                    Debug.LogError(_enterPlayer);
                     return _enterPlayer;
                 }
                 else
                 {
                     _enterPlayer = false;
-                    Debug.LogError(_enterPlayer);
                     return _enterPlayer;
                 }
             }
