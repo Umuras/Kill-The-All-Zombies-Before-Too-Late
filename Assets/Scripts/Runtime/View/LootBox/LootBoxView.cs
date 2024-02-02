@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LootBoxView : View
+public class LootBoxView : EventView
 {
     public string playerTag = "Player";
     public bool bouncingBox = true;

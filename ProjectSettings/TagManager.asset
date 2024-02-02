@@ -6,6 +6,7 @@ TagManager:
   tags:
   - UIRoot
   - TreasureChest
+  - Target
   layers:
   - Default
   - TransparentFX

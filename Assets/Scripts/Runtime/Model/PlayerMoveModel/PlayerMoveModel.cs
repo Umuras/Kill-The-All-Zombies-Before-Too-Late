@@ -47,7 +47,6 @@ public class PlayerMoveModel : IPlayerMoveModel
         {
             Jump();
         }
-        
     }
 
     public void MovePlayer(Transform transform)
