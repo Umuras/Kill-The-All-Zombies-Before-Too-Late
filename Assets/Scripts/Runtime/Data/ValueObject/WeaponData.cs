@@ -19,4 +19,6 @@ public struct WeaponProperties
     public int magCount;
     public GameObject muzzle;
     public GameObject bullet;
+    public AudioClip fire;
+    public AudioClip realod;
 }

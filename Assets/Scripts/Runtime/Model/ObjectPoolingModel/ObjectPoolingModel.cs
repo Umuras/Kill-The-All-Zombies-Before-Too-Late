@@ -12,7 +12,7 @@ public class ObjectPoolingModel : IObjectPoolingModel
         poolableObjectList = new Queue<GameObject>();
         for (int i = 0; i < poolObjectQuantity; i++)
         {
-            GameObject poolObject = Object.Instantiate(poolGameObject, poolParent.transform, true);
+            GameObject poolObject = Object.Instantiate(poolGameObject, poolParent.transform, worldPositionStays: true);
             poolObject.SetActive(false);
 
             poolableObjectList.Enqueue(poolObject);

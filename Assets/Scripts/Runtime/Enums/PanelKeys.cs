@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class PanelKeys
 {
-    public const string MAINMENU = "MainMenu"; 
+    public const string MAINMENU = "MainMenu";
+    public const string PLAYERANDWEAPONUI = "PlayerAndWeaponUI";
 }

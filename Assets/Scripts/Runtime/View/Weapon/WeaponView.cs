@@ -7,5 +7,7 @@ public class WeaponView : EventView
 {
     public List<GameObject> weaponList;
     public List<Transform> weaponMuzzleTransform;
-    public int weaponIndex;
+    public AudioSource fireAudioSource;
+    public AudioSource reloadAudioSource;
+    public Animation fireAnimation;
 }

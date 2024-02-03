@@ -19,14 +19,14 @@ public class BulletMediator : EventMediator
     private void OnEnable()
     {
         Debug.LogWarning("I'm active");
-        Invoke(nameof(EnqueueCheck), 1);
+        Invoke(nameof(EnqueueCheck),0.5f);
     }
 
     private void EnqueueCheck()
     {
         if (view.isCalledByPooling)
         {
-            Invoke(nameof(Enqueue), 1);
+            Invoke(nameof(Enqueue), 0.5f);
         }
     }
 

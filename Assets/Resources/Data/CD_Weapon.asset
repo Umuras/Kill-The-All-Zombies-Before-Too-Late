@@ -19,13 +19,17 @@ MonoBehaviour:
       damagePower: 15
       magCapacity: 20
       magCount: 3
-      muzzle: {fileID: 1391847458487284, guid: 9bf79f2d846a57440a981c168c87c617, type: 3}
+      muzzle: {fileID: 1782395880954752, guid: 3dd9cf2e209c504448f1c4c6835675cf, type: 3}
       bullet: {fileID: 1231614812322653505, guid: 7050c910fa7f7934cbf7a468d6f75217, type: 3}
+      fire: {fileID: 8300000, guid: 2203773368e4340d98c114f55c2dd7fd, type: 3}
+      realod: {fileID: 8300000, guid: 3c5c1d4d7b9307c458890a4beb12e4ae, type: 3}
   - weapon:
       weaponName: Rifle
       shootRange: 40
       damagePower: 30
       magCapacity: 30
       magCount: 4
-      muzzle: {fileID: 1391847458487284, guid: 9bf79f2d846a57440a981c168c87c617, type: 3}
+      muzzle: {fileID: 1782395880954752, guid: 3dd9cf2e209c504448f1c4c6835675cf, type: 3}
       bullet: {fileID: 2067707786190466171, guid: 3e16fe1e040fb1d46906820603db60b3, type: 3}
+      fire: {fileID: 8300000, guid: 8602b7d5cd15c1943a50aa53f171c8cf, type: 3}
+      realod: {fileID: 8300000, guid: e5198250a6a57408bb36e14bc4a322c4, type: 3}

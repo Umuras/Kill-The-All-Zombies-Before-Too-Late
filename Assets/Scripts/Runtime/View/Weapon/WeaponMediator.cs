@@ -1,9 +1,13 @@
 using strange.extensions.mediation.impl;
-using System.Collections;
-using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.Search;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.LowLevel;
+
+public enum WeaponEvent
+{
+    DecreasingAmmo,
+    AmmoFinished
+}
 
 public class WeaponMediator : EventMediator
 {
@@ -13,56 +17,58 @@ public class WeaponMediator : EventMediator
     public IWeaponModel weaponModel { get; set; }
     [Inject]
     public IObjectPoolingModel objectPoolingModel { get; set; }
+    [Inject]
+    public IPlayerAndWeaponUIModel playerAndWeaponUIModel { get; set; }
 
     public override void OnRegister()
     {
+        weaponModel.InitializeWeaponsProperties();
         Cursor.lockState = CursorLockMode.Locked;
-        view.weaponIndex = 0;
-        objectPoolingModel.CreatePool(weaponModel.weaponData[view.weaponIndex].weapon.bullet, 20);
-    }
-
-    private void FixedUpdate()
-    {
-        if (weaponModel != null)
-        {
-            weaponModel.RaycastForWeapon(view.weaponMuzzleTransform[view.weaponIndex]);
-        }
-
-        if (Input.GetMouseButton(0))
-        {
-            weaponModel.FireBullet(view.weaponMuzzleTransform[view.weaponIndex], WeaponKeys.Pistol);
-        }
+        weaponModel.weaponIndex = 0;
+        view.fireAudioSource.clip = weaponModel.weaponData[weaponModel.weaponIndex].weapon.fire;
+        view.reloadAudioSource.clip = weaponModel.weaponData[weaponModel.weaponIndex].weapon.realod;
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            view.weaponList[view.weaponIndex].SetActive(false);
-            view.weaponIndex = 0;
-            view.weaponList[view.weaponIndex].SetActive(true);
+            view.weaponList[weaponModel.weaponIndex].SetActive(false);
+            weaponModel.weaponIndex = 0;
+            view.weaponList[weaponModel.weaponIndex].SetActive(true);
+            playerAndWeaponUIModel.ChangeWeaponAmmoText(weaponModel.totalPistolMagInside, weaponModel.totalPistolAmmo);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            view.weaponList[view.weaponIndex].SetActive(false);
-            view.weaponIndex = 1;
-            view.weaponList[view.weaponIndex].SetActive(true);
+            view.weaponList[weaponModel.weaponIndex].SetActive(false);
+            weaponModel.weaponIndex = 1;
+            view.weaponList[weaponModel.weaponIndex].SetActive(true);
+            playerAndWeaponUIModel.ChangeWeaponAmmoText(weaponModel.totalRifleMagInside, weaponModel.totalRifleAmmo);
         }
 
-        //if (view.weaponIndex == (int)WeaponKeys.Pistol)
-        //{
-        //    if (Input.GetMouseButtonDown(0))
-        //    {
-        //        foreach (WeaponData weaponData in weaponModel.weaponData)
-        //        {
-        //            if (weaponData.weapon.weaponName == WeaponKeys.Pistol.ToString())
-        //            {
-        //                weaponData.weapon.muzzle.SetActive(true);
-        //            }
-                    
-        //        }
-        //    }
-        //}
-    }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            weaponModel.Reload(view.reloadAudioSource);
+            playerAndWeaponUIModel.statusLabel.text = " ";
+        }
+        
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (weaponModel.totalPistolMagInside > 0)
+            {
+                if (!view.fireAnimation.isPlaying)
+                {
+                    playerAndWeaponUIModel.DecreasingAmmo(weaponModel.weaponIndex, --weaponModel.totalPistolMagInside);
+                    weaponModel.RaycastForWeapon(view.weaponMuzzleTransform[weaponModel.weaponIndex], weaponModel.pistolShootRange);
+                    view.fireAnimation.Play();
+                    view.fireAudioSource.Play();
+                } 
+            }
+            else
+            {
+                playerAndWeaponUIModel.AmmoFinished("Your ammo is finished, PLEASE RELOAD!!!");
+            }
+        }
+    }
 }
