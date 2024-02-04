@@ -10,4 +10,6 @@ public class WeaponView : EventView
     public AudioSource fireAudioSource;
     public AudioSource reloadAudioSource;
     public Animation fireAnimation;
+    public ParticleSystem pistolParticleSystem;
+    public ParticleSystem rifleParticleSystem;
 }

@@ -54,42 +54,44 @@ public class WeaponMediator : EventMediator
 
         if (Input.GetKeyDown(KeyCode.R))
         {
+            weaponModel.reloading = true;
             weaponModel.Reload(view.reloadAudioSource);
             playerAndWeaponUIModel.statusLabel.text = " ";
         }
 
-        if (weaponModel.weaponIndex == (int)WeaponKeys.Pistol)
+        if (!weaponModel.reloading)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (weaponModel.weaponIndex == (int)WeaponKeys.Pistol)
             {
-                if (weaponModel.totalPistolMagInside > 0)
+                if (Input.GetMouseButtonDown(0))
                 {
-                    if (!view.fireAnimation.isPlaying)
+                    if (weaponModel.totalPistolMagInside > 0)
                     {
-                        playerAndWeaponUIModel.DecreasingAmmo(weaponModel.weaponIndex, --weaponModel.totalPistolMagInside);
-                        weaponModel.RaycastForWeapon(view.weaponMuzzleTransform[weaponModel.weaponIndex], weaponModel.pistolShootRange);
-                        view.fireAnimation.Play(WeaponKeys.Pistol.ToString());
-                        view.fireAudioSource.Play();
+                        if (!view.fireAnimation.isPlaying)
+                        {
+                            playerAndWeaponUIModel.DecreasingAmmo(weaponModel.weaponIndex, --weaponModel.totalPistolMagInside);
+                            weaponModel.RaycastForWeapon(view.weaponMuzzleTransform[weaponModel.weaponIndex], weaponModel.pistolShootRange);
+                            view.pistolParticleSystem.Play();
+                            view.fireAnimation.Play(WeaponKeys.Pistol.ToString());
+                            view.fireAudioSource.Play();
+                        }
                     }
                 }
-                else
-                {
-                    playerAndWeaponUIModel.AmmoFinished("Your ammo is finished, PLEASE RELOAD!!!");
-                }
             }
-        }
-        else
-        {
-            if (Input.GetMouseButton(0))
+            else
             {
-                if (weaponModel.totalRifleMagInside > 0)
+                if (Input.GetMouseButton(0))
                 {
-                    if (!view.fireAnimation.isPlaying)
+                    if (weaponModel.totalRifleMagInside > 0)
                     {
-                        playerAndWeaponUIModel.DecreasingAmmo(weaponModel.weaponIndex, --weaponModel.totalRifleMagInside);
-                        weaponModel.RaycastForWeapon(view.weaponMuzzleTransform[weaponModel.weaponIndex], weaponModel.rifleShootRange);
-                        view.fireAnimation.Play(WeaponKeys.Rifle.ToString());
-                        view.fireAudioSource.Play();
+                        if (!view.fireAnimation.isPlaying)
+                        {
+                            playerAndWeaponUIModel.DecreasingAmmo(weaponModel.weaponIndex, --weaponModel.totalRifleMagInside);
+                            weaponModel.RaycastForWeapon(view.weaponMuzzleTransform[weaponModel.weaponIndex], weaponModel.rifleShootRange);
+                            view.rifleParticleSystem.Play();
+                            view.fireAnimation.Play(WeaponKeys.Rifle.ToString());
+                            view.fireAudioSource.Play();
+                        }
                     }
                 }
             }

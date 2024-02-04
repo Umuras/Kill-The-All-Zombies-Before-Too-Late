@@ -34,4 +34,4 @@ MonoBehaviour:
       bullet: {fileID: 2067707786190466171, guid: 3e16fe1e040fb1d46906820603db60b3, type: 3}
       fire: {fileID: 8300000, guid: 8602b7d5cd15c1943a50aa53f171c8cf, type: 3}
       realod: {fileID: 8300000, guid: e5198250a6a57408bb36e14bc4a322c4, type: 3}
-      fireAnimationClip: {fileID: 7400000, guid: 2b16373f9f3b3704aad46379430649b7, type: 2}
+      fireAnimationClip: {fileID: 7400000, guid: 61e7d81d50e54e24b9a69ca784e3eb74, type: 2}

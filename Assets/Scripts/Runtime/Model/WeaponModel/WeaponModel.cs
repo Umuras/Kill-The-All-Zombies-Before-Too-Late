@@ -35,6 +35,7 @@ public class WeaponModel : IWeaponModel
     public float totalRifleAmmo { get; set; }
     public float rifleShootRange { get; set; }
 
+    public bool reloading { get; set; }
     public GameObject MuzzleFlash { get; set; }
 
 

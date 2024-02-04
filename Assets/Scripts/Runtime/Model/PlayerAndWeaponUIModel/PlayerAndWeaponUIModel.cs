@@ -76,6 +76,8 @@ public class PlayerAndWeaponUIModel : IPlayerAndWeaponUIModel
             weaponModel.totalRifleMagInside = weaponMagInside;
             weaponModel.totalRifleAmmo = totalWeaponAmmo;
         }
+
+        weaponModel.reloading = false;
     }
 
     public void ChangeWeaponAmmoText(float weaponMagInside, float totalWeaponAmmo)
