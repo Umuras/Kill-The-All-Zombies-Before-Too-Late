@@ -23,6 +23,7 @@ MonoBehaviour:
       bullet: {fileID: 1231614812322653505, guid: 7050c910fa7f7934cbf7a468d6f75217, type: 3}
       fire: {fileID: 8300000, guid: 2203773368e4340d98c114f55c2dd7fd, type: 3}
       realod: {fileID: 8300000, guid: 3c5c1d4d7b9307c458890a4beb12e4ae, type: 3}
+      fireAnimationClip: {fileID: 7400000, guid: 7fca6b2b78e381e40a0c7e34b4ac59dc, type: 2}
   - weapon:
       weaponName: Rifle
       shootRange: 40
@@ -33,3 +34,4 @@ MonoBehaviour:
       bullet: {fileID: 2067707786190466171, guid: 3e16fe1e040fb1d46906820603db60b3, type: 3}
       fire: {fileID: 8300000, guid: 8602b7d5cd15c1943a50aa53f171c8cf, type: 3}
       realod: {fileID: 8300000, guid: e5198250a6a57408bb36e14bc4a322c4, type: 3}
+      fireAnimationClip: {fileID: 7400000, guid: 2b16373f9f3b3704aad46379430649b7, type: 2}

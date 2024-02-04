@@ -27,6 +27,8 @@ public class WeaponMediator : EventMediator
         weaponModel.weaponIndex = 0;
         view.fireAudioSource.clip = weaponModel.weaponData[weaponModel.weaponIndex].weapon.fire;
         view.reloadAudioSource.clip = weaponModel.weaponData[weaponModel.weaponIndex].weapon.realod;
+        view.fireAnimation.AddClip(weaponModel.weaponData[0].weapon.fireAnimationClip, WeaponKeys.Pistol.ToString());
+        view.fireAnimation.AddClip(weaponModel.weaponData[1].weapon.fireAnimationClip, WeaponKeys.Rifle.ToString());
     }
 
     private void Update()
@@ -37,6 +39,8 @@ public class WeaponMediator : EventMediator
             weaponModel.weaponIndex = 0;
             view.weaponList[weaponModel.weaponIndex].SetActive(true);
             playerAndWeaponUIModel.ChangeWeaponAmmoText(weaponModel.totalPistolMagInside, weaponModel.totalPistolAmmo);
+            view.fireAnimation.clip = weaponModel.weaponData[weaponModel.weaponIndex].weapon.fireAnimationClip;
+            view.reloadAudioSource.clip = weaponModel.weaponData[weaponModel.weaponIndex].weapon.realod;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
@@ -44,6 +48,8 @@ public class WeaponMediator : EventMediator
             weaponModel.weaponIndex = 1;
             view.weaponList[weaponModel.weaponIndex].SetActive(true);
             playerAndWeaponUIModel.ChangeWeaponAmmoText(weaponModel.totalRifleMagInside, weaponModel.totalRifleAmmo);
+            view.fireAnimation.clip = weaponModel.weaponData[weaponModel.weaponIndex].weapon.fireAnimationClip;
+            view.reloadAudioSource.clip = weaponModel.weaponData[weaponModel.weaponIndex].weapon.realod;
         }
 
         if (Input.GetKeyDown(KeyCode.R))
@@ -51,23 +57,41 @@ public class WeaponMediator : EventMediator
             weaponModel.Reload(view.reloadAudioSource);
             playerAndWeaponUIModel.statusLabel.text = " ";
         }
-        
 
-        if (Input.GetMouseButtonDown(0))
+        if (weaponModel.weaponIndex == (int)WeaponKeys.Pistol)
         {
-            if (weaponModel.totalPistolMagInside > 0)
+            if (Input.GetMouseButtonDown(0))
             {
-                if (!view.fireAnimation.isPlaying)
+                if (weaponModel.totalPistolMagInside > 0)
                 {
-                    playerAndWeaponUIModel.DecreasingAmmo(weaponModel.weaponIndex, --weaponModel.totalPistolMagInside);
-                    weaponModel.RaycastForWeapon(view.weaponMuzzleTransform[weaponModel.weaponIndex], weaponModel.pistolShootRange);
-                    view.fireAnimation.Play();
-                    view.fireAudioSource.Play();
-                } 
+                    if (!view.fireAnimation.isPlaying)
+                    {
+                        playerAndWeaponUIModel.DecreasingAmmo(weaponModel.weaponIndex, --weaponModel.totalPistolMagInside);
+                        weaponModel.RaycastForWeapon(view.weaponMuzzleTransform[weaponModel.weaponIndex], weaponModel.pistolShootRange);
+                        view.fireAnimation.Play(WeaponKeys.Pistol.ToString());
+                        view.fireAudioSource.Play();
+                    }
+                }
+                else
+                {
+                    playerAndWeaponUIModel.AmmoFinished("Your ammo is finished, PLEASE RELOAD!!!");
+                }
             }
-            else
+        }
+        else
+        {
+            if (Input.GetMouseButton(0))
             {
-                playerAndWeaponUIModel.AmmoFinished("Your ammo is finished, PLEASE RELOAD!!!");
+                if (weaponModel.totalRifleMagInside > 0)
+                {
+                    if (!view.fireAnimation.isPlaying)
+                    {
+                        playerAndWeaponUIModel.DecreasingAmmo(weaponModel.weaponIndex, --weaponModel.totalRifleMagInside);
+                        weaponModel.RaycastForWeapon(view.weaponMuzzleTransform[weaponModel.weaponIndex], weaponModel.rifleShootRange);
+                        view.fireAnimation.Play(WeaponKeys.Rifle.ToString());
+                        view.fireAudioSource.Play();
+                    }
+                }
             }
         }
     }

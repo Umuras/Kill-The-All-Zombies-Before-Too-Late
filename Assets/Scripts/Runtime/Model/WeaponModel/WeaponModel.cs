@@ -129,6 +129,10 @@ public class WeaponModel : IWeaponModel
     private async Task WaitingReloadSound(AudioSource audioSource)
     {
         int clipLength = (int)audioSource.clip.length;
+        if (weaponIndex == (int)WeaponKeys.Rifle)
+        {
+            clipLength += 1;
+        }
         await Task.Delay(clipLength * 1000);
         if (weaponIndex == (int)WeaponKeys.Pistol)
         {

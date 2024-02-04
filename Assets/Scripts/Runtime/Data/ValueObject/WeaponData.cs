@@ -21,4 +21,5 @@ public struct WeaponProperties
     public GameObject bullet;
     public AudioClip fire;
     public AudioClip realod;
+    public AnimationClip fireAnimationClip;
 }

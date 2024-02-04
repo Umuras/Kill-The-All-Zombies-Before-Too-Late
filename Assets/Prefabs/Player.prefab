@@ -2879,7 +2879,7 @@ GameObject:
   - component: {fileID: 4689454857884070902}
   - component: {fileID: 4723586043538909216}
   - component: {fileID: 1411479304437048498}
-  - component: {fileID: 4593966984623258294}
+  - component: {fileID: 6203468333376575186}
   m_Layer: 0
   m_Name: Weapons
   m_TagString: Untagged
@@ -2922,10 +2922,9 @@ MonoBehaviour:
   weaponMuzzleTransform:
   - {fileID: 1145784704062151058}
   - {fileID: 2225963876466826489}
-  weaponIndex: 0
   fireAudioSource: {fileID: 4723586043538909216}
   reloadAudioSource: {fileID: 1411479304437048498}
-  fireAnimation: {fileID: 4593966984623258294}
+  fireAnimation: {fileID: 6203468333376575186}
 --- !u!82 &4723586043538909216
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3118,7 +3117,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!111 &4593966984623258294
+--- !u!111 &6203468333376575186
 Animation:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3127,10 +3126,9 @@ Animation:
   m_GameObject: {fileID: 9031345640845982628}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 7fca6b2b78e381e40a0c7e34b4ac59dc, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 7fca6b2b78e381e40a0c7e34b4ac59dc, type: 2}
+  m_Animation: {fileID: 0}
+  m_Animations: []
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
