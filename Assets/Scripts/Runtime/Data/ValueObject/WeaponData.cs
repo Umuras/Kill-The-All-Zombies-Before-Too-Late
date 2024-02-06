@@ -13,8 +13,8 @@ public struct WeaponData
 public struct WeaponProperties
 {
     public string weaponName;
-    public float shootRange;
-    public float damagePower;
+    public int shootRange;
+    public int damagePower;
     public int magCapacity;
     public int magCount;
     public GameObject muzzle;

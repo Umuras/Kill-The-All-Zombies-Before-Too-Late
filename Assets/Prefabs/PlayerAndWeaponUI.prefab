@@ -340,6 +340,7 @@ MonoBehaviour:
   healtText: {fileID: 2814333916781106113}
   ammoText: {fileID: 7359484041314545915}
   statusLabel: {fileID: 6526825492160084829}
+  weaponCrossHair: {fileID: 3163644057537607721}
 --- !u!1 &4631356775896669924
 GameObject:
   m_ObjectHideFlags: 0

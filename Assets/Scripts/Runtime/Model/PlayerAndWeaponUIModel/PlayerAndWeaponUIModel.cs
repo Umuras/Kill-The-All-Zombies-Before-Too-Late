@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerAndWeaponUIModel : IPlayerAndWeaponUIModel
 {
@@ -14,6 +15,8 @@ public class PlayerAndWeaponUIModel : IPlayerAndWeaponUIModel
     public TextMeshProUGUI ammoText { get; set; }
     public TextMeshProUGUI statusLabel { get; set; }
 
+    public Image weaponCrossHair { get; set; }
+
     public void FillTexts(TextMeshProUGUI healthText, TextMeshProUGUI ammoText, TextMeshProUGUI statusLabel)
     {
         this.healthText = healthText;
@@ -21,12 +24,17 @@ public class PlayerAndWeaponUIModel : IPlayerAndWeaponUIModel
         this.statusLabel = statusLabel;
     }
 
-    public void InitTextAmmo(float weaponMagCapacity, float totalWeaponAmmo)
+    public void FillCrossHairImage(Image weaponCrossHair)
+    {
+        this.weaponCrossHair = weaponCrossHair;
+    }
+
+    public void InitTextAmmo(int weaponMagCapacity, int totalWeaponAmmo)
     {
         ammoText.text = weaponMagCapacity.ToString() + "/" + totalWeaponAmmo;
     }
 
-    public void DecreasingAmmo(int weaponIndex, float totalWeaponMagInside)
+    public void DecreasingAmmo(int weaponIndex, int totalWeaponMagInside)
     {
         if (weaponIndex == (int)WeaponKeys.Pistol)
         {
@@ -42,9 +50,9 @@ public class PlayerAndWeaponUIModel : IPlayerAndWeaponUIModel
         statusLabel.text = RealodWarningText;
     }
 
-    public void ReloadAmmo(float totalWeaponMagInside, float totalWeaponAmmo, float weaponMagInside)
+    public void ReloadAmmo(int totalWeaponMagInside, int totalWeaponAmmo, int weaponMagInside)
     {
-        float requiredAmmo = totalWeaponMagInside - weaponMagInside;
+        int requiredAmmo = totalWeaponMagInside - weaponMagInside;
         if (totalWeaponAmmo > requiredAmmo)
         {
             totalWeaponAmmo = (totalWeaponAmmo - requiredAmmo);
@@ -78,9 +86,11 @@ public class PlayerAndWeaponUIModel : IPlayerAndWeaponUIModel
         }
 
         weaponModel.reloading = false;
+        statusLabel.text = " ";
+        weaponCrossHair.gameObject.SetActive(true);
     }
 
-    public void ChangeWeaponAmmoText(float weaponMagInside, float totalWeaponAmmo)
+    public void ChangeWeaponAmmoText(int weaponMagInside, int totalWeaponAmmo)
     {
         ammoText.text = weaponMagInside + "/" + totalWeaponAmmo;
     }
