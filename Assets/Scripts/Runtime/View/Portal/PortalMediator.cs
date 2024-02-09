@@ -14,6 +14,10 @@ public class PortalMediator : EventMediator
 {
     [Inject]
     public PortalView view { get; set; }
+    [Inject]
+    public IBundleModel bundleModel { get; set; }
+    [Inject]
+    public IGameAreaModel gameAreaModel { get; set; }
 
     public override void OnRegister()
     {
@@ -35,7 +39,10 @@ public class PortalMediator : EventMediator
     {
         if (other.gameObject.CompareTag("Player")) 
         {
-            Debug.Log("I am in the PORTALLLLL!!!!");
+            bundleModel.AddressableInstantiate("NewLevel", gameAreaModel.GameAreaTransform).Then(() =>
+            {
+                Destroy(transform.parent.gameObject);
+            });
         }
     }
 

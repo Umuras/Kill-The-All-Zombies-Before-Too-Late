@@ -31,6 +31,7 @@ public class GameContext : MVCSContext
         injectionBinder.Bind<IWeaponModel>().To<WeaponModel>().ToSingleton();
         injectionBinder.Bind<IObjectPoolingModel>().To<ObjectPoolingModel>().ToSingleton();
         injectionBinder.Bind<ITargetModel>().To<TargetModel>().ToSingleton();
+        injectionBinder.Bind<IGameAreaModel>().To<GameAreaModel>().ToSingleton();
         
         mediationBinder.Bind<MainMenuView>().To<MainMenuMediator>();
         mediationBinder.Bind<UIPanelControllerView>().To<UIPanelControllerMediator>();
@@ -47,6 +48,7 @@ public class GameContext : MVCSContext
         mediationBinder.Bind<TargetCounterView>().To<TargetCounterMediator>();
         mediationBinder.Bind<TrainingInformationPanelView>().To<TrainingInformationPanelMediator>();
         mediationBinder.Bind<PortalView>().To<PortalMediator>();
+        mediationBinder.Bind<GameAreaView>().To<GameAreaMediator>();
 
 
         commandBinder.Bind(ContextEvent.START).To<GameInitializeCommand>().Once();

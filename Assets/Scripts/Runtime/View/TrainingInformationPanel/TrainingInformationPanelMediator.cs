@@ -1,3 +1,4 @@
+using DG.Tweening;
 using strange.extensions.dispatcher.eventdispatcher.api;
 using strange.extensions.mediation.impl;
 using System;
@@ -18,6 +19,8 @@ public class TrainingInformationPanelMediator : EventMediator
     public IUIPanelModel uIPanelModel { get; set; }
     [Inject]
     public IBundleModel bundleModel { get; set; }
+    [Inject]
+    public IGameAreaModel gameAreaModel { get; set; }
 
     public override void OnRegister()
     {
@@ -27,11 +30,14 @@ public class TrainingInformationPanelMediator : EventMediator
     private void OnClosePanel()
     {
         view.PassGameButton.interactable = false;
-        bundleModel.AddressableInstantiate(GameAreaKeys.TRAININGLEVEL, gameObject.transform.parent.transform.parent.transform.parent.transform.parent).Then(() =>
+        bundleModel.AddressableInstantiate(GameAreaKeys.TRAININGLEVEL, gameAreaModel.GameAreaTransform).Then(() =>
         {
             uIPanelModel.OpenPanel(1, PanelKeys.PLAYERANDWEAPONUI).Then(() =>
             {
-                uIPanelModel.ClosePanel(2);
+               bundleModel.AddressableInstantiate("Player", gameAreaModel.GameAreaTransform).Then(() =>
+               {
+                   uIPanelModel.ClosePanel(2);
+               });
             });
         });
     }
