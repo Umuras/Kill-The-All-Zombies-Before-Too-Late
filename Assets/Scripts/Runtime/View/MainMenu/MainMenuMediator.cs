@@ -31,11 +31,8 @@ public class MainMenuMediator : EventMediator
 
     private void OnPlay()
     {
-        bundleModel.AddressableInstantiate(GameAreaKeys.TRAININGLEVEL, gameObject.transform.parent.transform.parent.transform.parent.transform.parent).Then(() =>
-        {
-            uIPanelModel.ClosePanel(0);
-            uIPanelModel.OpenPanel(1, PanelKeys.PLAYERANDWEAPONUI);
-        });
+        uIPanelModel.ClosePanel(0);
+        uIPanelModel.OpenPanel(2, PanelKeys.TRAININGINFOPANEL);
     }
 
     private void OnExit()

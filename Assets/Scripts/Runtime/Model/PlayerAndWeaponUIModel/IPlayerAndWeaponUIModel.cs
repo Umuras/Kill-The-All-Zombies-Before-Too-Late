@@ -9,11 +9,13 @@ public interface IPlayerAndWeaponUIModel
     TextMeshProUGUI healthText { get; set; }
     TextMeshProUGUI ammoText { get; set; }
     TextMeshProUGUI statusLabel { get; set; }
-    public Image weaponCrossHair { get; set; }
+    TextMeshProUGUI playerMissionLabel { get; set; }
+
+    Image weaponCrossHair { get; set; }
 
     void InitTextAmmo(int weaponMagCapacity, int totalWeaponAmmo);
 
-    void FillTexts(TextMeshProUGUI healthText, TextMeshProUGUI ammoText, TextMeshProUGUI statusLabel);
+    void FillTexts(TextMeshProUGUI healthText, TextMeshProUGUI ammoText, TextMeshProUGUI statusLabel, TextMeshProUGUI playerMissionLabel);
 
     void DecreasingAmmo(int weaponIndex, int totalWeaponMagInside);
 

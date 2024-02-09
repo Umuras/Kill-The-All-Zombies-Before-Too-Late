@@ -15,13 +15,16 @@ public class PlayerAndWeaponUIModel : IPlayerAndWeaponUIModel
     public TextMeshProUGUI ammoText { get; set; }
     public TextMeshProUGUI statusLabel { get; set; }
 
+    public TextMeshProUGUI playerMissionLabel { get; set; }
+
     public Image weaponCrossHair { get; set; }
 
-    public void FillTexts(TextMeshProUGUI healthText, TextMeshProUGUI ammoText, TextMeshProUGUI statusLabel)
+    public void FillTexts(TextMeshProUGUI healthText, TextMeshProUGUI ammoText, TextMeshProUGUI statusLabel, TextMeshProUGUI playerMissionLabel)
     {
         this.healthText = healthText;
         this.ammoText = ammoText;
         this.statusLabel = statusLabel;
+        this.playerMissionLabel = playerMissionLabel;
     }
 
     public void FillCrossHairImage(Image weaponCrossHair)

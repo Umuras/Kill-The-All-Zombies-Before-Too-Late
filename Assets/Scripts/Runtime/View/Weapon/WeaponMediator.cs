@@ -1,7 +1,9 @@
 using strange.extensions.mediation.impl;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Search;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public enum WeaponEvent
 {
@@ -35,42 +37,42 @@ public class WeaponMediator : EventMediator
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                if (!weaponModel.reloading)
+                {
+                    weaponModel.ChangeWeapon(view.weaponList, WeaponKeys.Pistol, view.fireAnimation, view.reloadAudioSource);
+                }
+
+                //view.weaponList[weaponModel.weaponIndex].SetActive(false);
+                //weaponModel.weaponIndex = 0;
+                //view.weaponList[weaponModel.weaponIndex].SetActive(true);
+                //playerAndWeaponUIModel.ChangeWeaponAmmoText(weaponModel.totalPistolMagInside, weaponModel.totalPistolAmmo);
+                //view.fireAnimation.clip = weaponModel.weaponData[weaponModel.weaponIndex].weapon.fireAnimationClip;
+                //view.reloadAudioSource.clip = weaponModel.weaponData[weaponModel.weaponIndex].weapon.realod;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                if (!weaponModel.reloading)
+                {
+                    weaponModel.ChangeWeapon(view.weaponList, WeaponKeys.Rifle, view.fireAnimation, view.reloadAudioSource);
+                }
+                //view.weaponList[weaponModel.weaponIndex].SetActive(false);
+                //weaponModel.weaponIndex = 1;
+                //view.weaponList[weaponModel.weaponIndex].SetActive(true);
+                //playerAndWeaponUIModel.ChangeWeaponAmmoText(weaponModel.totalRifleMagInside, weaponModel.totalRifleAmmo);
+                //view.fireAnimation.clip = weaponModel.weaponData[weaponModel.weaponIndex].weapon.fireAnimationClip;
+                //view.reloadAudioSource.clip = weaponModel.weaponData[weaponModel.weaponIndex].weapon.realod;
+            }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                weaponModel.Reload(view.reloadAudioSource);
+            }
+
             if (!weaponModel.reloading)
             {
-                weaponModel.ChangeWeapon(view.weaponList, WeaponKeys.Pistol, view.fireAnimation, view.reloadAudioSource);
-            }
-            
-            //view.weaponList[weaponModel.weaponIndex].SetActive(false);
-            //weaponModel.weaponIndex = 0;
-            //view.weaponList[weaponModel.weaponIndex].SetActive(true);
-            //playerAndWeaponUIModel.ChangeWeaponAmmoText(weaponModel.totalPistolMagInside, weaponModel.totalPistolAmmo);
-            //view.fireAnimation.clip = weaponModel.weaponData[weaponModel.weaponIndex].weapon.fireAnimationClip;
-            //view.reloadAudioSource.clip = weaponModel.weaponData[weaponModel.weaponIndex].weapon.realod;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            if (!weaponModel.reloading)
-            {
-                weaponModel.ChangeWeapon(view.weaponList, WeaponKeys.Rifle, view.fireAnimation, view.reloadAudioSource);
-            }
-            //view.weaponList[weaponModel.weaponIndex].SetActive(false);
-            //weaponModel.weaponIndex = 1;
-            //view.weaponList[weaponModel.weaponIndex].SetActive(true);
-            //playerAndWeaponUIModel.ChangeWeaponAmmoText(weaponModel.totalRifleMagInside, weaponModel.totalRifleAmmo);
-            //view.fireAnimation.clip = weaponModel.weaponData[weaponModel.weaponIndex].weapon.fireAnimationClip;
-            //view.reloadAudioSource.clip = weaponModel.weaponData[weaponModel.weaponIndex].weapon.realod;
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            weaponModel.Reload(view.reloadAudioSource);
-        }
-
-        if (!weaponModel.reloading)
-        {
-           dispatcher.Dispatch(FireWeaponEvent.FIREWEAPON);
+                dispatcher.Dispatch(FireWeaponEvent.FIREWEAPON);
                 //if (Input.GetMouseButtonDown(0))
                 //{
                 //    if (weaponModel.totalPistolMagInside > 0)
@@ -85,7 +87,7 @@ public class WeaponMediator : EventMediator
                 //        }
                 //    }
                 //}
-                
+
 
                 //if (Input.GetMouseButton(0))
                 //{
@@ -103,4 +105,4 @@ public class WeaponMediator : EventMediator
                 //}
             }
     }
-    }
+}

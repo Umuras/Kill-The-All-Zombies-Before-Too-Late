@@ -11,4 +11,5 @@ public class PlayerAndWeaponUIView : EventView
     public TextMeshProUGUI ammoText;
     public TextMeshProUGUI statusLabel;
     public Image weaponCrossHair;
+    public TextMeshProUGUI playerMissionLabel;
 }

@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface ITargetModel
 {
+    int targetQuantity { get; set; }
     void DecrasingTargetHealthAndKillTarget(TargetView targetView);
 }

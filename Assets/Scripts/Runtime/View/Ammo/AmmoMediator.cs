@@ -17,25 +17,55 @@ public class AmmoMediator : EventMediator
         base.OnRegister();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Enter Collision");
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag(view.PlayerTag))
         {
-            if (weaponModel.weaponIndex == (int)WeaponKeys.Pistol)
+            if (AmmoQuantityControl())
             {
-                weaponModel.totalPistolMagInside = weaponModel.pistolMagCapacity;
-                weaponModel.totalPistolAmmo = weaponModel.pistolMagCount * weaponModel.pistolMagCapacity;
-                playerAndWeaponUIModel.InitTextAmmo(weaponModel.totalPistolMagInside, weaponModel.totalPistolAmmo);
+                if (weaponModel.weaponIndex == (int)WeaponKeys.Pistol)
+                {
+                    weaponModel.totalPistolMagInside = weaponModel.pistolMagCapacity;
+                    weaponModel.totalPistolAmmo = weaponModel.pistolMagCount * weaponModel.pistolMagCapacity;
+                    playerAndWeaponUIModel.InitTextAmmo(weaponModel.totalPistolMagInside, weaponModel.totalPistolAmmo);
+                }
+                else if (weaponModel.weaponIndex == (int)WeaponKeys.Rifle)
+                {
+                    weaponModel.totalRifleMagInside = weaponModel.rifleMagCapacity;
+                    weaponModel.totalRifleAmmo = weaponModel.rifleMagCount * weaponModel.rifleMagCapacity;
+                    playerAndWeaponUIModel.InitTextAmmo(weaponModel.totalRifleMagInside, weaponModel.totalRifleAmmo);
+                }
+                gameObject.SetActive(false);
             }
-            else if (weaponModel.weaponIndex == (int)WeaponKeys.Rifle)
-            {
-                weaponModel.totalRifleMagInside = weaponModel.rifleMagCapacity;
-                weaponModel.totalRifleAmmo = weaponModel.rifleMagCount * weaponModel.rifleMagCapacity;
-                playerAndWeaponUIModel.InitTextAmmo(weaponModel.totalRifleMagInside, weaponModel.totalRifleAmmo);
-            }
-            gameObject.SetActive(false);
         }
+    }
+
+    private bool AmmoQuantityControl()
+    {
+        if (weaponModel.weaponIndex == (int)WeaponKeys.Pistol)
+        {
+            if (weaponModel.totalPistolMagInside == weaponModel.pistolMagCapacity && weaponModel.totalPistolAmmo == weaponModel.pistolMagCount * weaponModel.pistolMagCapacity)
+            {
+                return false;
+            }
+            else if (weaponModel.totalPistolAmmo == weaponModel.pistolMagCount * weaponModel.pistolMagCapacity)
+            {
+                return false;
+            }
+        }
+        else if (weaponModel.weaponIndex == (int)WeaponKeys.Rifle)
+        {
+            if (weaponModel.totalRifleMagInside == weaponModel.rifleMagCapacity  && weaponModel.totalRifleAmmo == weaponModel.rifleMagCount * weaponModel.rifleMagCapacity)
+            {
+                return false;
+            }
+            else if (weaponModel.totalRifleAmmo == weaponModel.rifleMagCount * weaponModel.rifleMagCapacity)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public override void OnRemove()

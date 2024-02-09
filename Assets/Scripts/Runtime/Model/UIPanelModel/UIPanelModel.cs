@@ -1,3 +1,4 @@
+using RSG;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,11 +10,18 @@ public class UIPanelModel : IUIPanelModel
 
     public List<Transform> layers { get; set; }
 
-    public void OpenPanel(int layerIndex, string addressable)
+    public IPromise OpenPanel(int layerIndex, string addressable)
     {
+        Promise promise = new Promise();
+
         ClosePanel(layerIndex);
 
-        bundleModel.AddressableInstantiate(addressable, layers[layerIndex].transform);
+        bundleModel.AddressableInstantiate(addressable, layers[layerIndex].transform).Then(() =>
+        { 
+            promise.Resolve();
+        }).Catch((ex) => promise.Reject(ex));
+
+        return promise;
     }
 
     public void ClosePanel(int layerIndex)

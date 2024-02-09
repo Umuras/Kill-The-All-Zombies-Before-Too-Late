@@ -1,4 +1,6 @@
 using DG.Tweening;
+using strange.extensions.context.api;
+using strange.extensions.dispatcher.eventdispatcher.api;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,13 +8,17 @@ using UnityEngine;
 
 public class TargetModel : ITargetModel
 {
+    [Inject(ContextKeys.CONTEXT_DISPATCHER)]
+    public IEventDispatcher dispatcher { get; set; }
+
     [Inject]
     public IWeaponModel weaponModel { get; set; }
+    [Inject]
+    public IPlayerAndWeaponUIModel playerAndWeaponUIModel { get; set; }
+
+    public int targetQuantity { get; set; }
 
     private float _standTurningZValue = -90f;
-
-    private float _damageTextMoveDistance = 0.5f;
-    private float _duration = 2f;
 
     public void DecrasingTargetHealthAndKillTarget(TargetView targetView)
     {
@@ -56,9 +62,18 @@ public class TargetModel : ITargetModel
         }
         else
         {
+            targetView.gameObject.GetComponent<MeshCollider>().enabled = false;
             Vector3 parentRotation = targetView.gameObject.transform.parent.rotation.eulerAngles;
 
             targetView.transform.parent.DORotate(new Vector3(parentRotation.x, parentRotation.y, _standTurningZValue), 1f);
+        }
+        targetQuantity -= 1;
+        playerAndWeaponUIModel.playerMissionLabel.text = "Mission: Destroy Targets\r\nTargets Quantity: " + targetQuantity;
+        if (targetQuantity == 0)
+        {
+            Debug.Log("Mission Complete");
+            dispatcher.Dispatch(PortalEvent.OpenPortal);
+            playerAndWeaponUIModel.playerMissionLabel.text = "Mission: Walk to the Portal and enter the new area.";
         }
     }
 

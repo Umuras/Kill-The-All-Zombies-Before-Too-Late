@@ -13,7 +13,7 @@ public class PlayerAndWeaponUIMediator : EventMediator
 
     public override void OnRegister()
     {
-        playerAndWeaponUIModel.FillTexts(view.healtText, view.ammoText, view.statusLabel);
+        playerAndWeaponUIModel.FillTexts(view.healtText, view.ammoText, view.statusLabel, view.playerMissionLabel);
         playerAndWeaponUIModel.FillCrossHairImage(view.weaponCrossHair);
         playerAndWeaponUIModel.InitTextAmmo(weaponModel.pistolMagCapacity, weaponModel.totalPistolAmmo);
     }

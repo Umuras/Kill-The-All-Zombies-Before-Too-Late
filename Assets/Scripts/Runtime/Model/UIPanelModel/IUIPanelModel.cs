@@ -1,10 +1,11 @@
+using RSG;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public interface IUIPanelModel
 {
-    void OpenPanel(int layerIndex, string addressable);
+    IPromise OpenPanel(int layerIndex, string addressable);
 
     void ClosePanel(int layerIndex);
 
