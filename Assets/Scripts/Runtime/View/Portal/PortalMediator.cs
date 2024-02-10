@@ -41,6 +41,11 @@ public class PortalMediator : EventMediator
         {
             bundleModel.AddressableInstantiate("NewLevel", gameAreaModel.GameAreaTransform).Then(() =>
             {
+                CharacterController playerCharacterController = other.gameObject.GetComponent<CharacterController>();
+                playerCharacterController.enabled = false;
+                //NewLevel Center Position
+                playerCharacterController.gameObject.transform.position = new Vector3(53.05114f, 0, 39.10672f);
+                playerCharacterController.enabled = true;
                 Destroy(transform.parent.gameObject);
             });
         }

@@ -5098,18 +5098,6 @@ PrefabInstance:
       value: Ammo
       objectReference: {fileID: 0}
     - target: {fileID: 4297007476884706, guid: 1c9af99fdcefa404a9630aeaa853d0e2, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4297007476884706, guid: 1c9af99fdcefa404a9630aeaa853d0e2, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4297007476884706, guid: 1c9af99fdcefa404a9630aeaa853d0e2, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4297007476884706, guid: 1c9af99fdcefa404a9630aeaa853d0e2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.4981499
       objectReference: {fileID: 0}
@@ -5147,10 +5135,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4297007476884706, guid: 1c9af99fdcefa404a9630aeaa853d0e2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6545780294224307061, guid: 1c9af99fdcefa404a9630aeaa853d0e2, type: 3}
-      propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
