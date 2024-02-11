@@ -15,6 +15,8 @@ public class WeaponModel : IWeaponModel
     public IPlayerAndWeaponUIModel playerAndWeaponUIModel { get; set; }
     [Inject]
     public ITargetModel targetModel { get; set; }
+    [Inject]
+    public IEnemyModel enemyModel { get; set; }
 
     public List<WeaponData> weaponData { get; set; }
     public AudioSource fireAudioSource { get; set; }
@@ -109,6 +111,7 @@ public class WeaponModel : IWeaponModel
             else if (hit.collider.gameObject.CompareTag(_tagEnemy))
             {
                 Debug.LogError("Hit Enemy");
+                enemyModel.DecreasingEnemyHealth(weaponData[weaponIndex].weapon.damagePower);
             }
         }  
     }
