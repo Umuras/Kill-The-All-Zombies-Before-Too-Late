@@ -27,10 +27,10 @@ public class EnemyMediator : EventMediator
 
     private void Update()
     {
-        if (!enemyModel.enemyIsDead)
-        {
-            enemyModel.EnemyStateControl();
-        }
+        //if (!enemyModel.enemyIsDead)
+        //{
+        //    //enemyModel.EnemyStateControl();
+        //}
     }
 
     public override void OnRemove()

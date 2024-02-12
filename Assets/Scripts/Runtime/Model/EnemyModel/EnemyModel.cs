@@ -51,7 +51,10 @@ public class EnemyModel : IEnemyModel
     {
         if (enemyHealth > 0)
         {
-            animator.SetTrigger("isDamage");
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Die"))
+            {
+                animator.SetTrigger("isDamage");
+            }
             enemyHealth -= weaponDamage;
         }
 
