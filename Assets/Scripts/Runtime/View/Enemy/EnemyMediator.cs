@@ -23,14 +23,14 @@ public class EnemyMediator : EventMediator
         enemyModel.animator = view.animator;
         enemyModel.enemyHealth = view.enemyHealth;
         enemyModel.enemyDamage = view.enemyDamage;
+        enemyModel.bloodyEffect = view.bloodyEffect;
+        enemyModel.deathEffect = view.deathEffect;
+        enemyModel.enemyHitEffect = view.enemyHitEffect;
     }
 
     private void Update()
     {
-        //if (!enemyModel.enemyIsDead)
-        //{
-        //    //enemyModel.EnemyStateControl();
-        //}
+
     }
 
     public override void OnRemove()

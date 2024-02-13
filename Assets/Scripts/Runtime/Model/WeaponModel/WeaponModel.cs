@@ -201,4 +201,22 @@ public class WeaponModel : IWeaponModel
             reloadAudioSource.clip = weaponData[weaponIndex].weapon.realod;
         }
     }
+
+    public void ResetWeaponAmmo()
+    {
+        totalPistolMagInside = pistolMagCapacity;
+        totalPistolAmmo = pistolMagCount * pistolMagCapacity;
+
+        totalRifleMagInside = rifleMagCapacity;
+        totalRifleAmmo = rifleMagCount * rifleMagCapacity;
+
+        if (weaponIndex == (int)WeaponKeys.Pistol)
+        {
+            playerAndWeaponUIModel.InitTextAmmo(totalPistolMagInside, totalPistolAmmo);
+        }
+        else if (weaponIndex == (int)WeaponKeys.Rifle)
+        {
+            playerAndWeaponUIModel.InitTextAmmo(totalRifleMagInside, totalRifleAmmo);
+        }
+    }
 }

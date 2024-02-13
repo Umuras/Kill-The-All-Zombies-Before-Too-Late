@@ -48,18 +48,10 @@ public class AmmoMediator : EventMediator
             {
                 return false;
             }
-            else if (weaponModel.totalPistolAmmo == weaponModel.pistolMagCount * weaponModel.pistolMagCapacity)
-            {
-                return false;
-            }
         }
         else if (weaponModel.weaponIndex == (int)WeaponKeys.Rifle)
         {
             if (weaponModel.totalRifleMagInside == weaponModel.rifleMagCapacity  && weaponModel.totalRifleAmmo == weaponModel.rifleMagCount * weaponModel.rifleMagCapacity)
-            {
-                return false;
-            }
-            else if (weaponModel.totalRifleAmmo == weaponModel.rifleMagCount * weaponModel.rifleMagCapacity)
             {
                 return false;
             }

@@ -35,4 +35,5 @@ public interface IWeaponModel
     void Reload(AudioSource reloadAudioSource);
 
     void ChangeWeapon(List<GameObject> weaponList, WeaponKeys weaponKey, Animation fireAnimation, AudioSource reloadAudioSource);
+    void ResetWeaponAmmo();
 }

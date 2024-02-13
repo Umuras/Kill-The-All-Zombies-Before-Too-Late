@@ -10,8 +10,9 @@ public interface IEnemyModel
     int enemyHealth { get; set; }
     int enemyDamage { get; set; }
     bool enemyIsDead { get; set; }
-
-    void EnemyStateControl();
+    ParticleSystem bloodyEffect { get; set; }
+    ParticleSystem deathEffect { get; set; }
+    ParticleSystem enemyHitEffect { get; set; }
 
     void DecreasingEnemyHealth(int weaponDamage);
 }

@@ -26,4 +26,5 @@ public interface IPlayerAndWeaponUIModel
     void ChangeWeaponAmmoText(int weaponMagInside, int totalWeaponAmmo);
 
     void FillCrossHairImage(Image weaponCrossHair);
+    void UpdatePlayerHealthText(int playerHealth);
 }

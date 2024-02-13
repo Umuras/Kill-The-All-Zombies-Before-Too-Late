@@ -97,4 +97,9 @@ public class PlayerAndWeaponUIModel : IPlayerAndWeaponUIModel
     {
         ammoText.text = weaponMagInside + "/" + totalWeaponAmmo;
     }
+
+    public void UpdatePlayerHealthText(int playerHealth)
+    {
+        healthText.text = "+= " + playerHealth;
+    }
 }

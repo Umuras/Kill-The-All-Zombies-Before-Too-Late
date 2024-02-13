@@ -18,6 +18,8 @@ public class PortalMediator : EventMediator
     public IBundleModel bundleModel { get; set; }
     [Inject]
     public IGameAreaModel gameAreaModel { get; set; }
+    [Inject]
+    public IWeaponModel weaponModel { get; set; }
 
     public override void OnRegister()
     {
@@ -41,6 +43,7 @@ public class PortalMediator : EventMediator
         {
             bundleModel.AddressableInstantiate("NewLevel", gameAreaModel.GameAreaTransform).Then(() =>
             {
+                weaponModel.ResetWeaponAmmo();
                 CharacterController playerCharacterController = other.gameObject.GetComponent<CharacterController>();
                 playerCharacterController.enabled = false;
                 //NewLevel Center Position
