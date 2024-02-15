@@ -13,4 +13,5 @@ public class EnemyView : EventView
     public ParticleSystem bloodyEffect;
     public ParticleSystem deathEffect;
     public ParticleSystem enemyHitEffect;
+    public List<GameObject> enemies = new List<GameObject>();
 }

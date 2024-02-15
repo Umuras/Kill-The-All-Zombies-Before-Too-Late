@@ -12,4 +12,9 @@ public class PlayerAndWeaponUIView : EventView
     public TextMeshProUGUI statusLabel;
     public Image weaponCrossHair;
     public TextMeshProUGUI playerMissionLabel;
+    public TextMeshProUGUI gameTimeLabel;
+    public TextMeshProUGUI multiplyTwoDamageLabel;
+    public TextMeshProUGUI multiplyTwoSpeedLabel;
+    [HideInInspector]
+    public int gameStartInitialTime = 60;
 }

@@ -5,4 +5,5 @@ using UnityEngine;
 public class PlayerModel : IPlayerModel
 {
     public int playerHealth { get; set; }
+    public GameObject player { get; set; }
 }

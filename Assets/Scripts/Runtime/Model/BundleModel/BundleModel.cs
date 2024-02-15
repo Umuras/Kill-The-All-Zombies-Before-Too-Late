@@ -31,6 +31,26 @@ public class BundleModel : IBundleModel
         return promise;
     }
 
+    public IPromise<GameObject> AddressableInstantiateAndReach(string addressableKey, Transform transform)
+    {
+        Promise<GameObject> promise = new Promise<GameObject>();
+        AsyncOperationHandle<GameObject> asyncOperationHandle = Addressables.InstantiateAsync(addressableKey, transform);
+
+        asyncOperationHandle.Completed += handle =>
+        {
+            if (asyncOperationHandle.Status == AsyncOperationStatus.Succeeded)
+            {
+                promise.Resolve(handle.Result);
+            }
+            else
+            {
+                promise.Reject(new Exception());
+            }
+        };
+
+        return promise;
+    }
+
     public IPromise<InputActionAsset> AddressableLoadInputActionAsset(string inputActionAssetAdress)
     {
         Promise<InputActionAsset> promise = new Promise<InputActionAsset>();

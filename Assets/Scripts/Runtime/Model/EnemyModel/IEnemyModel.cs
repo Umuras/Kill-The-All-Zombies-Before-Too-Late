@@ -14,5 +14,5 @@ public interface IEnemyModel
     ParticleSystem deathEffect { get; set; }
     ParticleSystem enemyHitEffect { get; set; }
 
-    void DecreasingEnemyHealth(int weaponDamage);
+    void DecreasingEnemyHealth(int weaponDamage, EnemyView enemyView);
 }

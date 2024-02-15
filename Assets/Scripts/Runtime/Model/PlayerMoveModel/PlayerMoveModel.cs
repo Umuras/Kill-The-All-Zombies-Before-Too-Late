@@ -15,6 +15,9 @@ public class PlayerMoveModel : IPlayerMoveModel
     public CharacterController characterController { get; set; }
 
     public Transform groundCheck { get; set; }
+    public float playerMoveSpeed { get; set; }
+
+    public bool isPlayerSpeedIncreased { get; set; }
 
     private string playerDataPath = "Data/CD_Player";
 
@@ -37,6 +40,11 @@ public class PlayerMoveModel : IPlayerMoveModel
         playerData = Resources.Load<CD_Player>(playerDataPath).playerData;
     }
 
+    public void FillMoveSpeed()
+    {
+        playerMoveSpeed = playerData.MovementData.moveSpeed;
+    }
+
     public void InputPlayer()
     {
         //Yeni Input Sistemindeki Player mapi üzerinden Move actiona eriþiyoruz
@@ -55,7 +63,7 @@ public class PlayerMoveModel : IPlayerMoveModel
         //hareket ediyor
         _moveDirection = transform.right * _moveVector.x + transform.forward * _moveVector.y;
 
-        characterController.Move(_moveDirection * playerData.MovementData.moveSpeed * Time.deltaTime);
+        characterController.Move(_moveDirection * playerMoveSpeed * Time.deltaTime);
     }
 
     public void Gravity()
@@ -109,5 +117,11 @@ public class PlayerMoveModel : IPlayerMoveModel
             }
         }
         return false;
+    }
+
+    public void ResetPlayerMoveSpeed()
+    {
+        playerMoveSpeed = playerData.MovementData.moveSpeed;
+        isPlayerSpeedIncreased = false;
     }
 }

@@ -5,4 +5,5 @@ using UnityEngine;
 public class GameAreaModel : IGameAreaModel
 {
     public Transform GameAreaTransform { get; set; }
+    public bool isOpenedMainStage { get; set; }
 }

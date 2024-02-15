@@ -8,8 +8,6 @@ public class EnemyHandMediator : EventMediator
     [Inject]
     public EnemyHandView view { get; set; }
     [Inject]
-    public IEnemyModel enemyModel { get; set; }
-    [Inject]
     public IPlayerModel playerModel { get; set; }
     [Inject]
     public IPlayerAndWeaponUIModel playerAndWeaponUIModel { get; set; }
@@ -25,7 +23,7 @@ public class EnemyHandMediator : EventMediator
         {
             if (playerModel.playerHealth > 0)
             {
-                playerModel.playerHealth -= enemyModel.enemyDamage;
+                playerModel.playerHealth -= 15;
 
                 if (playerModel.playerHealth <= 0)
                 {

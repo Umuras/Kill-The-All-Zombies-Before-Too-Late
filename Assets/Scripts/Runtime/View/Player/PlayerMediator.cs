@@ -20,6 +20,7 @@ public class PlayerMediator : EventMediator
     private void Init()
     {
         playerModel.playerHealth = view.playerHealth;
+        playerModel.player = gameObject;
     }
 
     public override void OnRemove()

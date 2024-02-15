@@ -21,6 +21,7 @@ public interface IWeaponModel
     public int rifleShootRange { get; set; }
     public ParticleSystem rifleParticleSystem { get; set; }
     public bool reloading { get; set; }
+    bool isWeaponIncreaseDamage { get; set; }
     public Animation fireAnimation { get; set; }
     public AudioSource fireAudioSource { get; set; }
     public List<Transform> weaponMuzzleTransform { get; set; }
@@ -36,4 +37,5 @@ public interface IWeaponModel
 
     void ChangeWeapon(List<GameObject> weaponList, WeaponKeys weaponKey, Animation fireAnimation, AudioSource reloadAudioSource);
     void ResetWeaponAmmo();
+    void ResetWeaponDamagePower();
 }

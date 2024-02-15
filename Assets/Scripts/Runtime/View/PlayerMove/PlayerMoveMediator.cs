@@ -26,6 +26,7 @@ public class PlayerMoveMediator : EventMediator
     {
         playerMoveModel.characterController = view.characterController;
         playerMoveModel.orientation = view.orientation;
+        playerMoveModel.FillMoveSpeed();
     }
 
     private void FixedUpdate()

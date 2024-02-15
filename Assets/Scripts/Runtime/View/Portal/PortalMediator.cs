@@ -15,11 +15,7 @@ public class PortalMediator : EventMediator
     [Inject]
     public PortalView view { get; set; }
     [Inject]
-    public IBundleModel bundleModel { get; set; }
-    [Inject]
-    public IGameAreaModel gameAreaModel { get; set; }
-    [Inject]
-    public IWeaponModel weaponModel { get; set; }
+    public IUIPanelModel uIPanelModel { get; set; }
 
     public override void OnRegister()
     {
@@ -41,14 +37,9 @@ public class PortalMediator : EventMediator
     {
         if (other.gameObject.CompareTag("Player")) 
         {
-            bundleModel.AddressableInstantiate("NewLevel", gameAreaModel.GameAreaTransform).Then(() =>
+            uIPanelModel.OpenPanel(2, PanelKeys.MAINSTAGEINFOPANEL).Then(() =>
             {
-                weaponModel.ResetWeaponAmmo();
-                CharacterController playerCharacterController = other.gameObject.GetComponent<CharacterController>();
-                playerCharacterController.enabled = false;
-                //NewLevel Center Position
-                playerCharacterController.gameObject.transform.position = new Vector3(53.05114f, 0, 39.10672f);
-                playerCharacterController.enabled = true;
+                uIPanelModel.isOpenPanel = true;
                 Destroy(transform.parent.gameObject);
             });
         }

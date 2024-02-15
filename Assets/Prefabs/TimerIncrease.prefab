@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 979716663070174055}
   - component: {fileID: 2481848241203805313}
   - component: {fileID: 4254104768175478442}
+  - component: {fileID: -3565776944500973636}
   m_Layer: 0
   m_Name: TimerIncrease
   m_TagString: Untagged
@@ -100,12 +101,25 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.33830816, y: 0.38756347, z: 0.08000021}
   m_Center: {x: 0.000000022351742, y: 0, z: 0}
+--- !u!114 &-3565776944500973636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647546183760328263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ccfb28ef0caba04b9a64a0a83e0fb93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraGameTime: 60
 --- !u!1 &8098283183191039583
 GameObject:
   m_ObjectHideFlags: 0

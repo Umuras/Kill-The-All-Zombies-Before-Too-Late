@@ -32,8 +32,9 @@ public class GameContext : MVCSContext
         injectionBinder.Bind<IObjectPoolingModel>().To<ObjectPoolingModel>().ToSingleton();
         injectionBinder.Bind<ITargetModel>().To<TargetModel>().ToSingleton();
         injectionBinder.Bind<IGameAreaModel>().To<GameAreaModel>().ToSingleton();
-        injectionBinder.Bind<IEnemyModel>().To<EnemyModel>().ToSingleton();
+        injectionBinder.Bind<IEnemyModel>().To<EnemyModel>();
         injectionBinder.Bind<IPlayerModel>().To<PlayerModel>().ToSingleton();
+        injectionBinder.Bind<IEnemySpawnerModel>().To<EnemySpawnerModel>().ToSingleton();
         
         mediationBinder.Bind<MainMenuView>().To<MainMenuMediator>();
         mediationBinder.Bind<UIPanelControllerView>().To<UIPanelControllerMediator>();
@@ -55,6 +56,11 @@ public class GameContext : MVCSContext
         mediationBinder.Bind<PlayerView>().To<PlayerMediator>();
         mediationBinder.Bind<EnemyHandView>().To<EnemyHandMediator>();
         mediationBinder.Bind<HealthView>().To<HealthMediator>();
+        mediationBinder.Bind<MainStageInformationPanelView>().To<MainStageInformationPanelMediator>();
+        mediationBinder.Bind<IncreaseDamagePowerView>().To<IncreaseDamagePowerMediator>();
+        mediationBinder.Bind<IncreaseGameTimeView>().To<IncreaseGameTimeMediator>();
+        mediationBinder.Bind<IncreasePlayerSpeedView>().To<IncreasePlayerSpeedMediator>();
+        mediationBinder.Bind<EnemySpawnerView>().To<EnemySpawnerMediator>();
 
 
         commandBinder.Bind(ContextEvent.START).To<GameInitializeCommand>().Once();

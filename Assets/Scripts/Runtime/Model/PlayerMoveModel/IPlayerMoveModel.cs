@@ -12,6 +12,9 @@ public interface IPlayerMoveModel
 
     PlayerData playerData { get; set; }
 
+    float playerMoveSpeed { get; set; }
+    bool isPlayerSpeedIncreased { get; set; }
+
     void MovePlayer(Transform transform);
 
     void InputPlayer();
@@ -25,4 +28,7 @@ public interface IPlayerMoveModel
     void GravityForce();
 
     bool ThrowRaycast(Transform orientaion);
+
+    void FillMoveSpeed();
+    void ResetPlayerMoveSpeed();
 }

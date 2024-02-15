@@ -10,4 +10,5 @@ public interface IBundleModel
 {
     IPromise<InputActionAsset> AddressableLoadInputActionAsset(string inputActionAssetAdress);
     IPromise AddressableInstantiate(string addressableKey, Transform transform);
+    IPromise<GameObject> AddressableInstantiateAndReach(string addressableKey, Transform transform);
 }

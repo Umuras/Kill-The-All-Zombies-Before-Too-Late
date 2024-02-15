@@ -44,6 +44,8 @@ public class WeaponModel : IWeaponModel
 
     public bool reloading { get; set; }
 
+    public bool isWeaponIncreaseDamage { get; set; }
+
     private int _bulletSpeed = 100;
 
     private string _tagEnemy = "Enemy";
@@ -101,7 +103,6 @@ public class WeaponModel : IWeaponModel
         {
             if (hit.collider.gameObject.CompareTag(_tagTarget))
             {
-                Debug.LogError("Hit Target!!!!");
                 TargetView targetGoView = hit.collider.gameObject.GetComponent<TargetView>();
                 if (targetGoView != null)
                 {
@@ -110,8 +111,15 @@ public class WeaponModel : IWeaponModel
             }
             else if (hit.collider.gameObject.CompareTag(_tagEnemy))
             {
-                Debug.LogError("Hit Enemy");
-                enemyModel.DecreasingEnemyHealth(weaponData[weaponIndex].weapon.damagePower);
+                EnemyView enemyView = hit.collider.gameObject.GetComponent<EnemyView>();
+                if (weaponIndex == (int)WeaponKeys.Pistol)
+                {
+                    enemyModel.DecreasingEnemyHealth(pistolDamagePower,enemyView);
+                }
+                else
+                {
+                    enemyModel.DecreasingEnemyHealth(rifleDamagePower, enemyView);
+                }
             }
         }  
     }
@@ -218,5 +226,12 @@ public class WeaponModel : IWeaponModel
         {
             playerAndWeaponUIModel.InitTextAmmo(totalRifleMagInside, totalRifleAmmo);
         }
+    }
+
+    public void ResetWeaponDamagePower()
+    {
+        pistolDamagePower = weaponData[(int)WeaponKeys.Pistol].weapon.damagePower;
+        rifleDamagePower = weaponData[(int)WeaponKeys.Rifle].weapon.damagePower;
+        isWeaponIncreaseDamage = false;
     }
 }

@@ -3,6 +3,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
+public enum EnemyEvent
+{
+    ChooseEnemyCharacter
+}
 
 public class EnemyMediator : EventMediator
 {
@@ -13,28 +19,11 @@ public class EnemyMediator : EventMediator
 
     public override void OnRegister()
     {
-        base.OnRegister();
-        Init();
-    }
-
-    private void Init()
-    {
-        enemyModel.agent = view.agent;
-        enemyModel.animator = view.animator;
-        enemyModel.enemyHealth = view.enemyHealth;
-        enemyModel.enemyDamage = view.enemyDamage;
-        enemyModel.bloodyEffect = view.bloodyEffect;
-        enemyModel.deathEffect = view.deathEffect;
-        enemyModel.enemyHitEffect = view.enemyHitEffect;
-    }
-
-    private void Update()
-    {
 
     }
 
     public override void OnRemove()
     {
-        base.OnRemove();
+
     }
 }

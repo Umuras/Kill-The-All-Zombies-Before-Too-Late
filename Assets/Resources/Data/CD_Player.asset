@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData:
     MovementData:
-      moveSpeed: 12
+      moveSpeed: 6
       groundDrag: 5
       jumpForce: 12
       jumpCooldown: 0.25

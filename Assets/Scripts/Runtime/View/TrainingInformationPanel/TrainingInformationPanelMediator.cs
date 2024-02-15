@@ -32,12 +32,12 @@ public class TrainingInformationPanelMediator : EventMediator
         view.PassGameButton.interactable = false;
         bundleModel.AddressableInstantiate(GameAreaKeys.TRAININGLEVEL, gameAreaModel.GameAreaTransform).Then(() =>
         {
-            uIPanelModel.OpenPanel(1, PanelKeys.PLAYERANDWEAPONUI).Then(() =>
+            bundleModel.AddressableInstantiate("Player", gameAreaModel.GameAreaTransform).Then(() =>
             {
-               bundleModel.AddressableInstantiate("Player", gameAreaModel.GameAreaTransform).Then(() =>
-               {
-                   uIPanelModel.ClosePanel(2);
-               });
+                uIPanelModel.OpenPanel(1, PanelKeys.PLAYERANDWEAPONUI).Then(() =>
+                {
+                    uIPanelModel.ClosePanel(2);
+                });
             });
         });
     }

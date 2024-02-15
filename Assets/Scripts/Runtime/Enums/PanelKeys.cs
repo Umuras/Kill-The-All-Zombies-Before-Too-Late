@@ -7,4 +7,5 @@ public class PanelKeys
     public const string MAINMENU = "MainMenu";
     public const string PLAYERANDWEAPONUI = "PlayerAndWeaponUI";
     public const string TRAININGINFOPANEL = "TrainingInformation";
+    public const string MAINSTAGEINFOPANEL = "MainStageInformation";
 }

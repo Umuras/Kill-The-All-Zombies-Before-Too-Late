@@ -10,12 +10,18 @@ public interface IPlayerAndWeaponUIModel
     TextMeshProUGUI ammoText { get; set; }
     TextMeshProUGUI statusLabel { get; set; }
     TextMeshProUGUI playerMissionLabel { get; set; }
+    TextMeshProUGUI gameTimeLabel { get; set; }
+    TextMeshProUGUI multiplyTwoDamageLabel { get; set; }
+    TextMeshProUGUI multiplyTwoSpeedLabel { get; set; }
 
     Image weaponCrossHair { get; set; }
+    float gameTime { get; set; }
 
     void InitTextAmmo(int weaponMagCapacity, int totalWeaponAmmo);
 
-    void FillTexts(TextMeshProUGUI healthText, TextMeshProUGUI ammoText, TextMeshProUGUI statusLabel, TextMeshProUGUI playerMissionLabel);
+    void FillTexts(TextMeshProUGUI healthText, TextMeshProUGUI ammoText, TextMeshProUGUI statusLabel,
+        TextMeshProUGUI playerMissionLabel, TextMeshProUGUI gameTimeLabel, TextMeshProUGUI multiplyTwoDamageLabel,
+        TextMeshProUGUI multiplyTwoSpeedLabel);
 
     void DecreasingAmmo(int weaponIndex, int totalWeaponMagInside);
 
@@ -27,4 +33,9 @@ public interface IPlayerAndWeaponUIModel
 
     void FillCrossHairImage(Image weaponCrossHair);
     void UpdatePlayerHealthText(int playerHealth);
+
+    void MainStageGameTimer();
+
+    void IncreaseDamagePowerTimer();
+    void IncreasePlayerMoveSpeedTimer();
 }

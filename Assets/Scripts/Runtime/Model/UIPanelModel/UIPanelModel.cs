@@ -9,6 +9,7 @@ public class UIPanelModel : IUIPanelModel
     public IBundleModel bundleModel { get; set; }
 
     public List<Transform> layers { get; set; }
+    public bool isOpenPanel { get; set; }
 
     public IPromise OpenPanel(int layerIndex, string addressable)
     {

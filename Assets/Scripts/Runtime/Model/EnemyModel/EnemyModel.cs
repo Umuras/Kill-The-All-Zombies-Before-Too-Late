@@ -8,6 +8,8 @@ public class EnemyModel : IEnemyModel
 {
     [Inject]
     public IPlayerMoveModel playerMoveModel { get; set; }
+    [Inject]
+    public IPlayerAndWeaponUIModel playerAndWeaponUIModel { get; set; }
 
     public NavMeshAgent agent { get; set; }
     public Animator animator { get; set; }
@@ -19,35 +21,40 @@ public class EnemyModel : IEnemyModel
     public ParticleSystem deathEffect { get; set; }
     public ParticleSystem enemyHitEffect { get; set; }
 
+    private int _enemyDeathPrize = 5;
 
-    public void DecreasingEnemyHealth(int weaponDamage)
+
+    public void DecreasingEnemyHealth(int weaponDamage, EnemyView enemyView)
     {
-        if (enemyHealth > 0)
+        if (enemyView.enemyHealth > 0)
         {
-            enemyHealth -= weaponDamage;
-            bloodyEffect.Play();
-            enemyHitEffect.Play();
+            enemyView.enemyHealth -= weaponDamage;
+            enemyView.bloodyEffect.Play();
+            enemyView.enemyHitEffect.Play();
+            enemyView.animator.SetTrigger("isDamage");
         }
 
 
-        if (enemyHealth <= 0)
+        if (enemyView.enemyHealth <= 0)
         {
-            animator.SetTrigger("isDead");
-            animator.gameObject.GetComponent<BoxCollider>().enabled = false;
+            enemyView.animator.ResetTrigger("isDamage");
+            enemyView.animator.SetTrigger("isDead");
+            enemyView.animator.gameObject.GetComponent<BoxCollider>().enabled = false;
             enemyIsDead = true;
-            agent.SetDestination(agent.gameObject.transform.position);
-            WaitDeadAnim();
+            enemyView.agent.SetDestination(enemyView.agent.gameObject.transform.position);
+            playerAndWeaponUIModel.gameTime += _enemyDeathPrize;
+            WaitDeadAnim(enemyView);
         }
     }
 
-    public async void WaitDeadAnim()
+    public async void WaitDeadAnim(EnemyView enemyView)
     {
-        await RunDeathEffectAfterAnimFinished();
+        await RunDeathEffectAfterAnimFinished(enemyView);
     }
 
-    public async Task RunDeathEffectAfterAnimFinished()
+    public async Task RunDeathEffectAfterAnimFinished(EnemyView enemyView)
     {
         await Task.Delay(3200);
-        deathEffect.Play();
+        enemyView.deathEffect.Play();
     }
 }
