@@ -13,12 +13,12 @@ public interface IPlayerAndWeaponUIModel
     TextMeshProUGUI gameTimeLabel { get; set; }
     TextMeshProUGUI multiplyTwoDamageLabel { get; set; }
     TextMeshProUGUI multiplyTwoSpeedLabel { get; set; }
-    TextMeshProUGUI gameOverLabel { get; set; }
     TextMeshProUGUI waveNumber { get; set; }
+    TextMeshProUGUI scoreText { get; set; }
 
     Image weaponCrossHair { get; set; }
-    Image playerDeathScreen { get; set; }
     float gameTime { get; set; }
+    int score { get; set; }
     float increaseDamagePowerFinishTime { get; set; }
     float increasePlayerMoveSpeedFinishTime { get; set; }
 
@@ -26,7 +26,7 @@ public interface IPlayerAndWeaponUIModel
 
     void FillTexts(TextMeshProUGUI healthText, TextMeshProUGUI ammoText, TextMeshProUGUI statusLabel,
         TextMeshProUGUI playerMissionLabel, TextMeshProUGUI gameTimeLabel, TextMeshProUGUI multiplyTwoDamageLabel,
-        TextMeshProUGUI multiplyTwoSpeedLabel, TextMeshProUGUI gameOverLabel, TextMeshProUGUI waveNumber);
+        TextMeshProUGUI multiplyTwoSpeedLabel, TextMeshProUGUI waveNumber, TextMeshProUGUI scoreText);
 
     void DecreasingAmmo(int weaponIndex, int totalWeaponMagInside);
 

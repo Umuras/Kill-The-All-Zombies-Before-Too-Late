@@ -1,3 +1,4 @@
+using DG.Tweening;
 using strange.extensions.dispatcher.eventdispatcher.api;
 using strange.extensions.mediation.impl;
 using System;
@@ -40,6 +41,7 @@ public class PortalMediator : EventMediator
             uIPanelModel.OpenPanel(2, PanelKeys.MAINSTAGEINFOPANEL).Then(() =>
             {
                 uIPanelModel.isOpenPanel = true;
+                DOTween.KillAll();
                 Destroy(transform.parent.gameObject);
             });
         }

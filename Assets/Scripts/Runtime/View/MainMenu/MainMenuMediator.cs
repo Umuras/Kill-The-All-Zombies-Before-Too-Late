@@ -27,6 +27,7 @@ public class MainMenuMediator : EventMediator
     {
         view.dispatcher.AddListener(MainMenuEvent.Play, OnPlay);
         view.dispatcher.AddListener(MainMenuEvent.Exit, OnExit);
+        Cursor.lockState = CursorLockMode.None;
     }
 
     private void OnPlay()

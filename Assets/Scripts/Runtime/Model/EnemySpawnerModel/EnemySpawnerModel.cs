@@ -46,11 +46,10 @@ public class EnemySpawnerModel : IEnemySpawnerModel
             {
                 int randomEnemyPoint = Random.Range(0, enemySpawnPoints.Count);
                 enemy.transform.position = enemySpawnPoints[randomEnemyPoint].position;
-                int randomCharacterNo = Random.Range(0, 52);
+                int randomCharacterNo = Random.Range(0, 51);
                 enemy.GetComponent<EnemyView>().enemies[randomCharacterNo].SetActive(true);
                 enemy.gameObject.SetActive(false);
                 aliveEnemies.Add(enemy);
-                Debug.LogError(aliveEnemies.Count);
             }).Then(() =>
             {
                 playerAndWeaponUIModel.playerMissionLabel.text = $"Mission: Kill the all zombies \r\n Quantity of Zombies =  {enemyFolder.childCount}";
@@ -76,6 +75,8 @@ public class EnemySpawnerModel : IEnemySpawnerModel
             aliveEnemies.Clear();
             deadEnemies.Clear();
             DestroyAllEnemies();
+            dispatcher.Dispatch(PowerUpsSpawnerEvent.DeleteAllPowerUps);
+
             if (enemyQuantityOfPerWave != _maximumEnemyQuantity)
             {
                 enemyQuantityOfPerWave += 5;
@@ -88,6 +89,7 @@ public class EnemySpawnerModel : IEnemySpawnerModel
         playerAndWeaponUIModel.waveNumber.text = $"Wave {waveCount}";
         waveCount++;
         EnemySpawner();
+        dispatcher.Dispatch(PowerUpsSpawnerEvent.StartSpawningPowerUps);
     }
 
     public void IsDeadAllEnemies()

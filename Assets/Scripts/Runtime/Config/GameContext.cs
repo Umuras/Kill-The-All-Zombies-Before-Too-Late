@@ -35,6 +35,7 @@ public class GameContext : MVCSContext
         injectionBinder.Bind<IEnemyModel>().To<EnemyModel>();
         injectionBinder.Bind<IPlayerModel>().To<PlayerModel>().ToSingleton();
         injectionBinder.Bind<IEnemySpawnerModel>().To<EnemySpawnerModel>().ToSingleton();
+        injectionBinder.Bind<IPowerUpsSpawnerModel>().To<PowerUpsSpawnerModel>().ToSingleton();
         
         mediationBinder.Bind<MainMenuView>().To<MainMenuMediator>();
         mediationBinder.Bind<UIPanelControllerView>().To<UIPanelControllerMediator>();
@@ -62,9 +63,12 @@ public class GameContext : MVCSContext
         mediationBinder.Bind<IncreasePlayerSpeedView>().To<IncreasePlayerSpeedMediator>();
         mediationBinder.Bind<EnemySpawnerView>().To<EnemySpawnerMediator>();
         mediationBinder.Bind<WaveFinishPanelView>().To<WaveFinishPanelMediator>();
+        mediationBinder.Bind<PowerUpsSpawnerView>().To<PowerUpsSpawnerMediator>();
+        mediationBinder.Bind<GameOverPanelView>().To<GameOverPanelMediator>();
 
 
         commandBinder.Bind(ContextEvent.START).To<GameInitializeCommand>().Once();
         commandBinder.Bind(FireWeaponEvent.FIREWEAPON).To<FireWeaponCommand>();
+        commandBinder.Bind(GameOverPanelEvent.RestartGame).To<RestartGameCommand>();
     }
 }

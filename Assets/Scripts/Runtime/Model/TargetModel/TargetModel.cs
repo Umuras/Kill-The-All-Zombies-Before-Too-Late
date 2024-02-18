@@ -71,7 +71,6 @@ public class TargetModel : ITargetModel
         playerAndWeaponUIModel.playerMissionLabel.text = "Mission: Destroy Targets\r\nTargets Quantity: " + targetQuantity;
         if (targetQuantity == 0)
         {
-            Debug.Log("Mission Complete");
             dispatcher.Dispatch(PortalEvent.OpenPortal);
             playerAndWeaponUIModel.playerMissionLabel.text = "Mission: Walk to the Portal and enter the new area.";
         }

@@ -22,7 +22,8 @@ public class EnemyModel : IEnemyModel
     public ParticleSystem deathEffect { get; set; }
     public ParticleSystem enemyHitEffect { get; set; }
 
-    private int _enemyDeathPrize = 5;
+    private int _enemyDeathTimePrize = 5;
+    private int _enemyDeathScorePrize = 10;
 
 
     public void DecreasingEnemyHealth(int weaponDamage, EnemyView enemyView)
@@ -43,10 +44,12 @@ public class EnemyModel : IEnemyModel
             enemyView.animator.gameObject.GetComponent<BoxCollider>().enabled = false;
             enemyView.enemyIsDead = true;
             enemyView.agent.SetDestination(enemyView.agent.gameObject.transform.position);
-            playerAndWeaponUIModel.gameTime += _enemyDeathPrize;
+            playerAndWeaponUIModel.gameTime += _enemyDeathTimePrize;
             enemySpawnerModel.aliveEnemies.Remove(enemyView.gameObject);
             enemySpawnerModel.deadEnemies.Add(enemyView.gameObject);
             playerAndWeaponUIModel.playerMissionLabel.text = $"Mission: Kill the all zombies \r\n Quantity of Zombies =  {enemySpawnerModel.enemyFolder.childCount - enemySpawnerModel.deadEnemies.Count}";
+            playerAndWeaponUIModel.score += _enemyDeathScorePrize;
+            playerAndWeaponUIModel.scoreText.text = $"Score = {playerAndWeaponUIModel.score}";
             WaitDeadAnim(enemyView);
         }
     }

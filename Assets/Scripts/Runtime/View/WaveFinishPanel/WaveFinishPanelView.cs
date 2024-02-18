@@ -8,5 +8,6 @@ public class WaveFinishPanelView : EventView
 {
     public TextMeshProUGUI waveFinishText;
     public TextMeshProUGUI waveCounterText;
+    [HideInInspector]
     public float waveDuration = 10f;
 }

@@ -6,4 +6,5 @@ public class GameAreaKeys
 {
     public const string CASTLE = "Castle";
     public const string TRAININGLEVEL = "TrainingLevel";
+    public const string MAINSTAGE = "MainStage";
 }

@@ -15,6 +15,8 @@ public class PlayerAndWeaponUIModel : IPlayerAndWeaponUIModel
     public IWeaponModel weaponModel { get; set; }
     [Inject]
     public IPlayerMoveModel playerMoveModel { get; set; }
+    [Inject]
+    public IUIPanelModel uIPanelModel { get; set; }
 
     public TextMeshProUGUI healthText { get; set; }
     public TextMeshProUGUI ammoText { get; set; }
@@ -25,21 +27,21 @@ public class PlayerAndWeaponUIModel : IPlayerAndWeaponUIModel
     public TextMeshProUGUI gameTimeLabel { get; set; }
     public TextMeshProUGUI multiplyTwoDamageLabel { get; set; }
     public TextMeshProUGUI multiplyTwoSpeedLabel { get; set; }
-    public TextMeshProUGUI gameOverLabel { get; set; }
     public TextMeshProUGUI waveNumber { get; set; }
+    public TextMeshProUGUI scoreText { get; set; }
 
     public Image weaponCrossHair { get; set; }
-    public Image playerDeathScreen { get; set; }
 
     public float gameTime { get; set; }
 
     public float increaseDamagePowerFinishTime { get; set; }
     public float increasePlayerMoveSpeedFinishTime { get; set; }
-    private string _gameOverMessage = "GAME OVER";
+    public int score { get; set; }
+    private bool _gameTimeFinished;
 
     public void FillTexts(TextMeshProUGUI healthText, TextMeshProUGUI ammoText, TextMeshProUGUI statusLabel,
         TextMeshProUGUI playerMissionLabel, TextMeshProUGUI gameTimeLabel, TextMeshProUGUI multiplyTwoDamageLabel,
-        TextMeshProUGUI multiplyTwoSpeedLabel, TextMeshProUGUI gameOverLabel, TextMeshProUGUI waveNumber)
+        TextMeshProUGUI multiplyTwoSpeedLabel, TextMeshProUGUI waveNumber, TextMeshProUGUI scoreText)
     {
         this.healthText = healthText;
         this.ammoText = ammoText;
@@ -48,8 +50,8 @@ public class PlayerAndWeaponUIModel : IPlayerAndWeaponUIModel
         this.gameTimeLabel = gameTimeLabel;
         this.multiplyTwoDamageLabel = multiplyTwoDamageLabel;
         this.multiplyTwoSpeedLabel = multiplyTwoSpeedLabel;
-        this.gameOverLabel = gameOverLabel;
         this.waveNumber = waveNumber;
+        this.scoreText = scoreText;
     }
 
     public void FillCrossHairImage(Image weaponCrossHair)
@@ -130,21 +132,22 @@ public class PlayerAndWeaponUIModel : IPlayerAndWeaponUIModel
 
     public void MainStageGameTimer()
     {
-       if (!gameTimeLabel.gameObject.activeInHierarchy)
-       {
-           gameTimeLabel.gameObject.SetActive(true);
-       }
+        if (_gameTimeFinished)
+        {
+            return;
+        }
 
-       if (gameTime > 0)
-       {
-           gameTime = (gameTime - Time.deltaTime);
-           gameTimeLabel.text = "Time = \r\n" + (Math.Round(gameTime,0));
-       }
-       else
-       {
-           gameTimeLabel.text = "Time = " + 0;
-           PlayerDeath();
-       }
+        if (gameTime > 0)
+        {
+            gameTime = (gameTime - Time.deltaTime);
+            gameTimeLabel.text = "Time = \r\n" + (Math.Round(gameTime,0));
+        }
+        else
+        {
+            _gameTimeFinished = true;
+            gameTimeLabel.text = "Time = \r\n" + 0;
+            PlayerDeath();
+        }
     }
 
     public void IncreaseDamagePowerTimer()
@@ -177,13 +180,7 @@ public class PlayerAndWeaponUIModel : IPlayerAndWeaponUIModel
 
     public void PlayerDeath()
     {
-        playerDeathScreen.DOFade(1, 2).OnComplete(() =>
-        {
-            DOVirtual.DelayedCall(1.25f, () =>
-            {
-                gameOverLabel.text = _gameOverMessage;
-                gameOverLabel.DOColor(Color.red, 1f).SetEase(Ease.Flash).SetLoops(-1, LoopType.Yoyo);
-            });
-        });
+        uIPanelModel.isOpenPanel = true;
+        uIPanelModel.OpenPanel(2, PanelKeys.GAMEOVERPANEL);
     }
 }

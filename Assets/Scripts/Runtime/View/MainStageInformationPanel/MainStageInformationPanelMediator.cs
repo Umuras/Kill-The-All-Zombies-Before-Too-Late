@@ -37,7 +37,7 @@ public class MainStageInformationPanelMediator : EventMediator
     private void OnEnterMainStage()
     {
         view.readyButton.interactable = false;
-        bundleModel.AddressableInstantiate("MainStage", gameAreaModel.GameAreaTransform).Then(() =>
+        bundleModel.AddressableInstantiate(GameAreaKeys.MAINSTAGE, gameAreaModel.GameAreaTransform).Then(() =>
         {
             weaponModel.ResetWeaponAmmo();
             CharacterController playerCharacterController = playerModel.player.GetComponent<CharacterController>();
@@ -47,6 +47,8 @@ public class MainStageInformationPanelMediator : EventMediator
             playerCharacterController.enabled = true;
         }).Then(() =>
         {
+            playerAndWeaponUIModel.gameTimeLabel.gameObject.SetActive(true);
+            playerAndWeaponUIModel.scoreText.gameObject.SetActive(true);
             gameAreaModel.isOpenedMainStage = true;
             uIPanelModel.isOpenPanel = false;
             uIPanelModel.ClosePanel(2);
