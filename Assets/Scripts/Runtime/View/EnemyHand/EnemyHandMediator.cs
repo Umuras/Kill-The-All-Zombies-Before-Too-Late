@@ -28,11 +28,12 @@ public class EnemyHandMediator : EventMediator
                 if (playerModel.playerHealth <= 0)
                 {
                     playerAndWeaponUIModel.UpdatePlayerHealthText(0);
-                    Debug.Log("Player DIEEEE");
+                    playerAndWeaponUIModel.PlayerDeath();
                 }
                 else
                 {
                     playerAndWeaponUIModel.UpdatePlayerHealthText(playerModel.playerHealth);
+                    playerModel.PlayerHitEffect();
                 }
             }
         }

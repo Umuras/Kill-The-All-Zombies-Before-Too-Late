@@ -9,7 +9,6 @@ public interface IEnemyModel
     Animator animator { get; set; }
     int enemyHealth { get; set; }
     int enemyDamage { get; set; }
-    bool enemyIsDead { get; set; }
     ParticleSystem bloodyEffect { get; set; }
     ParticleSystem deathEffect { get; set; }
     ParticleSystem enemyHitEffect { get; set; }

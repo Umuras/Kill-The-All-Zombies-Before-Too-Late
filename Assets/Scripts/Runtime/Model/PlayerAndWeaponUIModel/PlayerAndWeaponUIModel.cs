@@ -1,8 +1,10 @@
+using DG.Tweening;
 using strange.extensions.dispatcher.eventdispatcher.api;
 using strange.extensions.mediation.impl;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,17 +25,21 @@ public class PlayerAndWeaponUIModel : IPlayerAndWeaponUIModel
     public TextMeshProUGUI gameTimeLabel { get; set; }
     public TextMeshProUGUI multiplyTwoDamageLabel { get; set; }
     public TextMeshProUGUI multiplyTwoSpeedLabel { get; set; }
+    public TextMeshProUGUI gameOverLabel { get; set; }
+    public TextMeshProUGUI waveNumber { get; set; }
 
     public Image weaponCrossHair { get; set; }
+    public Image playerDeathScreen { get; set; }
 
     public float gameTime { get; set; }
 
-    private float _increaseDamagePowerFinishTime = 20;
-    private float _increasePlayerMoveSpeedFinishTime = 20;
+    public float increaseDamagePowerFinishTime { get; set; }
+    public float increasePlayerMoveSpeedFinishTime { get; set; }
+    private string _gameOverMessage = "GAME OVER";
 
-    public void FillTexts(TextMeshProUGUI healthText, TextMeshProUGUI ammoText, TextMeshProUGUI statusLabel, 
+    public void FillTexts(TextMeshProUGUI healthText, TextMeshProUGUI ammoText, TextMeshProUGUI statusLabel,
         TextMeshProUGUI playerMissionLabel, TextMeshProUGUI gameTimeLabel, TextMeshProUGUI multiplyTwoDamageLabel,
-        TextMeshProUGUI multiplyTwoSpeedLabel)
+        TextMeshProUGUI multiplyTwoSpeedLabel, TextMeshProUGUI gameOverLabel, TextMeshProUGUI waveNumber)
     {
         this.healthText = healthText;
         this.ammoText = ammoText;
@@ -42,6 +48,8 @@ public class PlayerAndWeaponUIModel : IPlayerAndWeaponUIModel
         this.gameTimeLabel = gameTimeLabel;
         this.multiplyTwoDamageLabel = multiplyTwoDamageLabel;
         this.multiplyTwoSpeedLabel = multiplyTwoSpeedLabel;
+        this.gameOverLabel = gameOverLabel;
+        this.waveNumber = waveNumber;
     }
 
     public void FillCrossHairImage(Image weaponCrossHair)
@@ -130,26 +138,21 @@ public class PlayerAndWeaponUIModel : IPlayerAndWeaponUIModel
        if (gameTime > 0)
        {
            gameTime = (gameTime - Time.deltaTime);
-           gameTimeLabel.text = "Time = " + (Math.Round(gameTime,0));
+           gameTimeLabel.text = "Time = \r\n" + (Math.Round(gameTime,0));
        }
        else
        {
            gameTimeLabel.text = "Time = " + 0;
-           Debug.Log("GameOver");
+           PlayerDeath();
        }
     }
 
     public void IncreaseDamagePowerTimer()
     {
-        if (!multiplyTwoDamageLabel.gameObject.activeInHierarchy)
+        if (increaseDamagePowerFinishTime > 0)
         {
-            multiplyTwoDamageLabel.gameObject.SetActive(true);
-        }
-
-        if (_increaseDamagePowerFinishTime > 0)
-        {
-            _increaseDamagePowerFinishTime -= Time.deltaTime;
-            multiplyTwoDamageLabel.text = $"2x Damage Time = {Math.Round(_increaseDamagePowerFinishTime,0)}";
+            increaseDamagePowerFinishTime -= Time.deltaTime;
+            multiplyTwoDamageLabel.text = $"2x Damage Time = {Math.Round(increaseDamagePowerFinishTime,0)}";
         }
         else
         {
@@ -160,20 +163,27 @@ public class PlayerAndWeaponUIModel : IPlayerAndWeaponUIModel
 
     public void IncreasePlayerMoveSpeedTimer()
     {
-        if (!multiplyTwoSpeedLabel.gameObject.activeInHierarchy)
+        if (increasePlayerMoveSpeedFinishTime > 0)
         {
-            multiplyTwoSpeedLabel.gameObject.SetActive(true);
-        }
-
-        if (_increasePlayerMoveSpeedFinishTime > 0)
-        {
-            _increasePlayerMoveSpeedFinishTime -= Time.deltaTime;
-            multiplyTwoSpeedLabel.text = $"2x Speed Time = {Math.Round(_increasePlayerMoveSpeedFinishTime, 0)}";
+            increasePlayerMoveSpeedFinishTime -= Time.deltaTime;
+            multiplyTwoSpeedLabel.text = $"2x Speed Time = {Math.Round(increasePlayerMoveSpeedFinishTime, 0)}";
         }
         else
         {
             multiplyTwoSpeedLabel.gameObject.SetActive(false);
             playerMoveModel.ResetPlayerMoveSpeed();
         }
+    }
+
+    public void PlayerDeath()
+    {
+        playerDeathScreen.DOFade(1, 2).OnComplete(() =>
+        {
+            DOVirtual.DelayedCall(1.25f, () =>
+            {
+                gameOverLabel.text = _gameOverMessage;
+                gameOverLabel.DOColor(Color.red, 1f).SetEase(Ease.Flash).SetLoops(-1, LoopType.Yoyo);
+            });
+        });
     }
 }

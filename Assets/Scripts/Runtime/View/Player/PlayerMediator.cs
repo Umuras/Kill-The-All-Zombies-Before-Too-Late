@@ -21,6 +21,7 @@ public class PlayerMediator : EventMediator
     {
         playerModel.playerHealth = view.playerHealth;
         playerModel.player = gameObject;
+        playerModel.PostProcessVolume = view.PostProcessVolume;
     }
 
     public override void OnRemove()

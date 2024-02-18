@@ -15,6 +15,10 @@ public class PlayerAndWeaponUIView : EventView
     public TextMeshProUGUI gameTimeLabel;
     public TextMeshProUGUI multiplyTwoDamageLabel;
     public TextMeshProUGUI multiplyTwoSpeedLabel;
+    public Image playerDeathScreen;
+    public TextMeshProUGUI gameOverLabel;
+    public Button tryAgainButton;
+    public TextMeshProUGUI waveNumber;
     [HideInInspector]
     public int gameStartInitialTime = 60;
 }

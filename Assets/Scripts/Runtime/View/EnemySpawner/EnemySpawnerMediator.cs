@@ -4,6 +4,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EnemySpawnerEvent
+{
+    StartWaveAndSetEnemyVisible,
+    StopSetEnemyVisible
+}
+
 public class EnemySpawnerMediator : EventMediator
 {
     [Inject]
@@ -13,28 +19,54 @@ public class EnemySpawnerMediator : EventMediator
 
     public override void OnRegister()
     {
-        base.OnRegister();
+        dispatcher.AddListener(EnemySpawnerEvent.StartWaveAndSetEnemyVisible, OnStartWaveAndSetEnemyVisible);
+        dispatcher.AddListener(EnemySpawnerEvent.StopSetEnemyVisible, OnStopSetEnemyVisible);
         Init();
     }
 
     private void Init()
     {
+        enemySpawnerModel.InitializeEnemiesList();
         enemySpawnerModel.enemyFolder = view.enemyFolder;
         enemySpawnerModel.enemySpawnPoints = view.enemySpawnPoints;
     }
 
-    private void Start()
+    public void OnStartWaveAndSetEnemyVisible()
     {
-        InvokeRepeating("EnemySpawner", 5, 5);
+        Invoke("StartNewWave", 0);
+        InvokeRepeating("SetEnemyVisible", 1, 0.2f);
     }
 
-    private void EnemySpawner()
+    private void StartNewWave()
     {
-        enemySpawnerModel.EnemySpawner();
+        enemySpawnerModel.StartNewWave();
     }
- 
+    private void SetEnemyVisible()
+    {
+        enemySpawnerModel.SetEnemyVisible();
+    }
+    
+    public void OnStopSetEnemyVisible()
+    {
+        CancelInvoke("SetEnemyVisible");
+    }
+
+    private void Update()
+    {
+        if (!enemySpawnerModel.checkingFinishedForDeadEnemies)
+        {
+            enemySpawnerModel.IsDeadAllEnemies();
+        }
+
+        if (enemySpawnerModel.deadAllEnemies)
+        {
+            enemySpawnerModel.OpenWaveFinishPanel();
+        }
+    }
+
     public override void OnRemove()
     {
-        base.OnRemove();
+        dispatcher.RemoveListener(EnemySpawnerEvent.StartWaveAndSetEnemyVisible, OnStartWaveAndSetEnemyVisible);
+        dispatcher.RemoveListener(EnemySpawnerEvent.StopSetEnemyVisible, OnStopSetEnemyVisible);
     }
 }

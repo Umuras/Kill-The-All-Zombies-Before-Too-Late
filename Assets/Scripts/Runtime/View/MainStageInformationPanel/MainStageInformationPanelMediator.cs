@@ -26,6 +26,8 @@ public class MainStageInformationPanelMediator : EventMediator
     public IPlayerModel playerModel { get; set; }
     [Inject]
     public IUIPanelModel uIPanelModel { get; set; }
+    [Inject]
+    public IEnemySpawnerModel enemySpawnerModel { get; set; }
 
     public override void OnRegister()
     {
@@ -38,7 +40,6 @@ public class MainStageInformationPanelMediator : EventMediator
         bundleModel.AddressableInstantiate("MainStage", gameAreaModel.GameAreaTransform).Then(() =>
         {
             weaponModel.ResetWeaponAmmo();
-            playerAndWeaponUIModel.playerMissionLabel.text = "Mission: Kill the all zombies";
             CharacterController playerCharacterController = playerModel.player.GetComponent<CharacterController>();
             playerCharacterController.enabled = false;
             //MainStage Center Position
@@ -49,6 +50,7 @@ public class MainStageInformationPanelMediator : EventMediator
             gameAreaModel.isOpenedMainStage = true;
             uIPanelModel.isOpenPanel = false;
             uIPanelModel.ClosePanel(2);
+            dispatcher.Dispatch(EnemySpawnerEvent.StartWaveAndSetEnemyVisible);
         });
         
     }

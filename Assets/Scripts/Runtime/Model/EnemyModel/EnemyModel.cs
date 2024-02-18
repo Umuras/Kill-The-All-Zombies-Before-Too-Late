@@ -10,12 +10,13 @@ public class EnemyModel : IEnemyModel
     public IPlayerMoveModel playerMoveModel { get; set; }
     [Inject]
     public IPlayerAndWeaponUIModel playerAndWeaponUIModel { get; set; }
+    [Inject]
+    public IEnemySpawnerModel enemySpawnerModel { get; set; }
 
     public NavMeshAgent agent { get; set; }
     public Animator animator { get; set; }
     public int enemyHealth { get; set; }
     public int enemyDamage { get; set; }
-    public bool enemyIsDead { get; set; }
 
     public ParticleSystem bloodyEffect { get; set; }
     public ParticleSystem deathEffect { get; set; }
@@ -40,9 +41,12 @@ public class EnemyModel : IEnemyModel
             enemyView.animator.ResetTrigger("isDamage");
             enemyView.animator.SetTrigger("isDead");
             enemyView.animator.gameObject.GetComponent<BoxCollider>().enabled = false;
-            enemyIsDead = true;
+            enemyView.enemyIsDead = true;
             enemyView.agent.SetDestination(enemyView.agent.gameObject.transform.position);
             playerAndWeaponUIModel.gameTime += _enemyDeathPrize;
+            enemySpawnerModel.aliveEnemies.Remove(enemyView.gameObject);
+            enemySpawnerModel.deadEnemies.Add(enemyView.gameObject);
+            playerAndWeaponUIModel.playerMissionLabel.text = $"Mission: Kill the all zombies \r\n Quantity of Zombies =  {enemySpawnerModel.enemyFolder.childCount - enemySpawnerModel.deadEnemies.Count}";
             WaitDeadAnim(enemyView);
         }
     }

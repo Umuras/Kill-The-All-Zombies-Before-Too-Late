@@ -19,10 +19,14 @@ public class PlayerAndWeaponUIMediator : EventMediator
     public override void OnRegister()
     {
         playerAndWeaponUIModel.FillTexts(view.healtText, view.ammoText, view.statusLabel, view.playerMissionLabel,
-            view.gameTimeLabel, view.multiplyTwoDamageLabel, view.multiplyTwoSpeedLabel);
+            view.gameTimeLabel, view.multiplyTwoDamageLabel, view.multiplyTwoSpeedLabel, view.gameOverLabel, view.waveNumber);
         playerAndWeaponUIModel.FillCrossHairImage(view.weaponCrossHair);
         playerAndWeaponUIModel.InitTextAmmo(weaponModel.pistolMagCapacity, weaponModel.totalPistolAmmo);
         playerAndWeaponUIModel.gameTime = view.gameStartInitialTime;
+        playerAndWeaponUIModel.playerDeathScreen = view.playerDeathScreen;
+        playerAndWeaponUIModel.increaseDamagePowerFinishTime = 20;
+        playerAndWeaponUIModel.increasePlayerMoveSpeedFinishTime = 20;
+
     }
 
     private void Update()

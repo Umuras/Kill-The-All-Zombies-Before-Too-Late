@@ -61,6 +61,7 @@ public class GameContext : MVCSContext
         mediationBinder.Bind<IncreaseGameTimeView>().To<IncreaseGameTimeMediator>();
         mediationBinder.Bind<IncreasePlayerSpeedView>().To<IncreasePlayerSpeedMediator>();
         mediationBinder.Bind<EnemySpawnerView>().To<EnemySpawnerMediator>();
+        mediationBinder.Bind<WaveFinishPanelView>().To<WaveFinishPanelMediator>();
 
 
         commandBinder.Bind(ContextEvent.START).To<GameInitializeCommand>().Once();

@@ -10,6 +10,7 @@ public class EnemyView : EventView
     public Animator animator;
     public int enemyHealth;
     public int enemyDamage;
+    public bool enemyIsDead;
     public ParticleSystem bloodyEffect;
     public ParticleSystem deathEffect;
     public ParticleSystem enemyHitEffect;
