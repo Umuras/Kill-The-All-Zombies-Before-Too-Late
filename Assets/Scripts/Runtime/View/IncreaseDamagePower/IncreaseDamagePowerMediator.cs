@@ -21,8 +21,13 @@ public class IncreaseDamagePowerMediator : EventMediator
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            weaponModel.pistolDamagePower = weaponModel.pistolDamagePower * view.increaseDamagePowerConstant;
-            weaponModel.rifleDamagePower = weaponModel.rifleDamagePower * view.increaseDamagePowerConstant;
+            if (!playerAndWeaponUIModel.multiplyTwoDamageLabel.gameObject.activeInHierarchy)
+            {
+                weaponModel.pistolDamagePower = weaponModel.pistolDamagePower * view.increaseDamagePowerConstant;
+                weaponModel.rifleDamagePower = weaponModel.rifleDamagePower * view.increaseDamagePowerConstant;
+            }
+            playerAndWeaponUIModel.increaseDamagePowerFinishTime = 20f;
+            playerAndWeaponUIModel.multiplyTwoDamageLabel.gameObject.SetActive(true);
             weaponModel.isWeaponIncreaseDamage = true;
             gameObject.SetActive(false);
         }
