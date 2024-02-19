@@ -10,4 +10,7 @@ Kullanılan Yapılar
 9- Strategy Pattern
 10- Cinemachine
 11- Post Processing
-12- Bazı SOLID Prensipleri
+12- GPU Optimizsayonu için Static Batching
+13 - Single-responsibility
+14- Interface segregation principle
+15- Dependency Injection
