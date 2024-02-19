@@ -17,11 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 6d7a779293cd1ed4aa9ddfbbf5f96a0f
   m_SerializeEntries:
-  - m_GUID: fa5c2a4d9dee4be408a8f423451f8ddd
-    m_Address: Castle
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8fd87591ab55aa8449ae791684f87881
     m_Address: Player
     m_ReadOnly: 0
