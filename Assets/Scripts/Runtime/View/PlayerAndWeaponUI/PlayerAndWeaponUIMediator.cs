@@ -43,5 +43,15 @@ public class PlayerAndWeaponUIMediator : EventMediator
         {
             playerAndWeaponUIModel.IncreasePlayerMoveSpeedTimer();
         }
+
+        if (playerAndWeaponUIModel.increasePlayerMoveSpeedFinishTime == 0)
+        {
+            playerAndWeaponUIModel.multiplyTwoDamageLabel.gameObject.SetActive(false);
+        }
+
+        if (playerAndWeaponUIModel.increasePlayerMoveSpeedFinishTime == 0)
+        {
+            playerAndWeaponUIModel.multiplyTwoSpeedLabel.gameObject.SetActive(false);
+        }
     }
 }

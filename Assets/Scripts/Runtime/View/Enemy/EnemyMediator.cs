@@ -22,6 +22,7 @@ public class EnemyMediator : EventMediator
 
     }
 
+
     public override void OnRemove()
     {
 

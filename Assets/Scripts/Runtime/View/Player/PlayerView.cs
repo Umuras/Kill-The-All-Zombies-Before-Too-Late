@@ -9,4 +9,8 @@ public class PlayerView : EventView
     [HideInInspector]
     public int playerHealth = 100;
     public PostProcessVolume PostProcessVolume;
+    public AudioSource playerAudioSource;
+    public AudioClip playerEnterClip;
+    public AudioClip playerHitClip;
+    public AudioClip playerDeathClip;
 }

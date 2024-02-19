@@ -28,6 +28,8 @@ public class MainStageInformationPanelMediator : EventMediator
     public IUIPanelModel uIPanelModel { get; set; }
     [Inject]
     public IEnemySpawnerModel enemySpawnerModel { get; set; }
+    [Inject]
+    public IGameMusicManagerModel gameMusicManagerModel { get; set; }
 
     public override void OnRegister()
     {
@@ -47,6 +49,8 @@ public class MainStageInformationPanelMediator : EventMediator
             playerCharacterController.enabled = true;
         }).Then(() =>
         {
+            InitPlayerEnterMusic();
+            InitMainStageMusic();
             playerAndWeaponUIModel.gameTimeLabel.gameObject.SetActive(true);
             playerAndWeaponUIModel.scoreText.gameObject.SetActive(true);
             gameAreaModel.isOpenedMainStage = true;
@@ -55,6 +59,19 @@ public class MainStageInformationPanelMediator : EventMediator
             dispatcher.Dispatch(EnemySpawnerEvent.StartWaveAndSetEnemyVisible);
         });
         
+    }
+
+    private void InitMainStageMusic()
+    {
+        gameMusicManagerModel.audioSource.clip = gameMusicManagerModel.mainStageClip;
+        gameMusicManagerModel.audioSource.loop = true;
+        gameMusicManagerModel.audioSource.Play();
+    }
+
+    private void InitPlayerEnterMusic()
+    {
+        playerModel.playerAudioSource.clip = playerModel.playerEnterClip;
+        playerModel.playerAudioSource.Play();
     }
 
     public override void OnRemove()

@@ -34,6 +34,7 @@ public class EnemyModel : IEnemyModel
             enemyView.bloodyEffect.Play();
             enemyView.enemyHitEffect.Play();
             enemyView.animator.SetTrigger("isDamage");
+            ChangeEnemyAudioClipAndPlay(enemyView, enemyView.enemyHitClip);
         }
 
 
@@ -41,6 +42,7 @@ public class EnemyModel : IEnemyModel
         {
             enemyView.animator.ResetTrigger("isDamage");
             enemyView.animator.SetTrigger("isDead");
+            ChangeEnemyAudioClipAndPlay(enemyView,enemyView.enemyDeathClip);
             enemyView.animator.gameObject.GetComponent<BoxCollider>().enabled = false;
             enemyView.enemyIsDead = true;
             enemyView.agent.SetDestination(enemyView.agent.gameObject.transform.position);
@@ -63,5 +65,11 @@ public class EnemyModel : IEnemyModel
     {
         await Task.Delay(3200);
         enemyView.deathEffect.Play();
+    }
+
+    public void ChangeEnemyAudioClipAndPlay(EnemyView enemyView, AudioClip enemyClip)
+    {
+        enemyView.enemyAudioSource.clip = enemyClip;
+        enemyView.enemyAudioSource.Play();
     }
 }

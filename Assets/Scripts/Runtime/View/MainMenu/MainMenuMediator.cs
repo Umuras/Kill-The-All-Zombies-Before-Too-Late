@@ -21,6 +21,8 @@ public class MainMenuMediator : EventMediator
     public IBundleModel bundleModel { get; set; }
     [Inject]
     public IUIPanelModel uIPanelModel { get; set; }
+    [Inject]
+    public IGameMusicManagerModel gameMusicManagerModel { get; set; }
 
 
     public override void OnRegister()
@@ -28,10 +30,26 @@ public class MainMenuMediator : EventMediator
         view.dispatcher.AddListener(MainMenuEvent.Play, OnPlay);
         view.dispatcher.AddListener(MainMenuEvent.Exit, OnExit);
         Cursor.lockState = CursorLockMode.None;
+        InitMainMenuMusic();
+    }
+
+    private void InitMainMenuMusic()
+    {
+        gameMusicManagerModel.audioSource.clip = gameMusicManagerModel.mainMenuClip;
+        gameMusicManagerModel.audioSource.loop = true;
+        gameMusicManagerModel.audioSource.Play();
+    }
+
+    private void InitPlayButtonMusic()
+    {
+        gameMusicManagerModel.audioSource.clip = gameMusicManagerModel.playButtonClip;
+        gameMusicManagerModel.audioSource.loop = false;
+        gameMusicManagerModel.audioSource.Play();
     }
 
     private void OnPlay()
     {
+        InitPlayButtonMusic();
         uIPanelModel.ClosePanel(0);
         uIPanelModel.OpenPanel(2, PanelKeys.TRAININGINFOPANEL);
     }

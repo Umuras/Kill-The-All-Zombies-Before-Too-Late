@@ -17,6 +17,8 @@ public class PortalMediator : EventMediator
     public PortalView view { get; set; }
     [Inject]
     public IUIPanelModel uIPanelModel { get; set; }
+    [Inject]
+    public IGameMusicManagerModel gameMusicManagerModel { get; set; }
 
     public override void OnRegister()
     {
@@ -40,12 +42,20 @@ public class PortalMediator : EventMediator
         {
             uIPanelModel.OpenPanel(2, PanelKeys.MAINSTAGEINFOPANEL).Then(() =>
             {
+                PlayMainStageInfoMusic();
                 uIPanelModel.isOpenPanel = true;
                 DOTween.KillAll();
                 Destroy(transform.parent.gameObject);
             });
         }
     }
+
+    private void PlayMainStageInfoMusic()
+    {
+        gameMusicManagerModel.audioSource.clip = gameMusicManagerModel.mainStageInfoClip;
+        gameMusicManagerModel.audioSource.Play();
+    }
+
 
     public override void OnRemove()
     {

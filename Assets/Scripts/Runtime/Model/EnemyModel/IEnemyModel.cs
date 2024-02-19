@@ -12,6 +12,6 @@ public interface IEnemyModel
     ParticleSystem bloodyEffect { get; set; }
     ParticleSystem deathEffect { get; set; }
     ParticleSystem enemyHitEffect { get; set; }
-
     void DecreasingEnemyHealth(int weaponDamage, EnemyView enemyView);
+    void ChangeEnemyAudioClipAndPlay(EnemyView enemyView, AudioClip enemyClip);
 }

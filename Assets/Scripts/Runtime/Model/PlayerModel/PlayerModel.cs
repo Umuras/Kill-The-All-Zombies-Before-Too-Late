@@ -10,6 +10,10 @@ public class PlayerModel : IPlayerModel
     public GameObject player { get; set; }
 
     public PostProcessVolume PostProcessVolume { get; set; }
+    public AudioSource playerAudioSource { get; set; }
+    public AudioClip playerEnterClip { get; set; }
+    public AudioClip playerHitClip { get; set; }
+    public AudioClip playerDeathClip { get; set; }
 
     private Vignette _vignette;
     private int _coolDownTime = 500;

@@ -36,6 +36,7 @@ public class GameContext : MVCSContext
         injectionBinder.Bind<IPlayerModel>().To<PlayerModel>().ToSingleton();
         injectionBinder.Bind<IEnemySpawnerModel>().To<EnemySpawnerModel>().ToSingleton();
         injectionBinder.Bind<IPowerUpsSpawnerModel>().To<PowerUpsSpawnerModel>().ToSingleton();
+        injectionBinder.Bind<IGameMusicManagerModel>().To<GameMusicManagerModel>().ToSingleton();
         
         mediationBinder.Bind<MainMenuView>().To<MainMenuMediator>();
         mediationBinder.Bind<UIPanelControllerView>().To<UIPanelControllerMediator>();
@@ -65,6 +66,7 @@ public class GameContext : MVCSContext
         mediationBinder.Bind<WaveFinishPanelView>().To<WaveFinishPanelMediator>();
         mediationBinder.Bind<PowerUpsSpawnerView>().To<PowerUpsSpawnerMediator>();
         mediationBinder.Bind<GameOverPanelView>().To<GameOverPanelMediator>();
+        mediationBinder.Bind<GameMusicManagerView>().To<GameMusicManagerMediator>();
 
 
         commandBinder.Bind(ContextEvent.START).To<GameInitializeCommand>().Once();

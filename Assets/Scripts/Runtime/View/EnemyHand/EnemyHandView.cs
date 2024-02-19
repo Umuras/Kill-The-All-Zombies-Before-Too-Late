@@ -5,5 +5,8 @@ using UnityEngine;
 
 public class EnemyHandView : EventView
 {
-    
+    [HideInInspector]
+    public int enemyHitDamage = 15;
+    [HideInInspector]
+    public EnemyView enemyView;
 }
