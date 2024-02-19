@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9c88cea120ef64085d4e66e41a0232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetHealth: 100
+  targetHealth: 15
   IsStandTarget: 1
   hasYoyoAnim: 0
   damageText: {fileID: 572545320222849345, guid: e6619fc75534b16458c8fa8db837665c, type: 3}

@@ -14,6 +14,8 @@ public class PlayerMoveMediator : EventMediator
     public IPlayerMoveModel playerMoveModel { get; set; }
     [Inject]
     public ILootBoxModel lootBoxModel { get; set; }
+    [Inject]
+    public IUIPanelModel uIPanelModel { get; set; }
 
     public override void OnRegister()
     {
@@ -31,16 +33,22 @@ public class PlayerMoveMediator : EventMediator
 
     private void FixedUpdate()
     {
-        playerMoveModel.MovePlayer(view.orientation);
-        lootBoxModel.isPlayerAround = playerMoveModel.ThrowRaycast(gameObject.transform);
+        if (!uIPanelModel.isOpenPanel)
+        {
+            playerMoveModel.MovePlayer(view.orientation);
+            lootBoxModel.isPlayerAround = playerMoveModel.ThrowRaycast(gameObject.transform);
+        }
     }
 
     private void Update()
     {
-        playerMoveModel.InputPlayer();
-        playerMoveModel.Gravity();
-        playerMoveModel.GravityForce();
-        playerMoveModel.GroundControl();
+        if (!uIPanelModel.isOpenPanel)
+        {
+            playerMoveModel.InputPlayer();
+            playerMoveModel.Gravity();
+            playerMoveModel.GravityForce();
+            playerMoveModel.GroundControl();
+        }
     }
 
     public override void OnRemove()

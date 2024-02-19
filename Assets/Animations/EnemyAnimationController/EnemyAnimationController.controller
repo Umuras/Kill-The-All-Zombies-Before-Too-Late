@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff76bd7977c90164d91f2641e18e212f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleTime: 4
+  idleTime: 2
   playerDetectionAreaRadius: 18
 --- !u!1101 &-8679500926552548477
 AnimatorStateTransition:

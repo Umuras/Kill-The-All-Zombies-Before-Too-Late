@@ -47,11 +47,7 @@ public class TargetModel : ITargetModel
             {
                 KillTargets(targetView);
             }
-        }
-        else
-        {
-            KillTargets(targetView);
-        }    
+        } 
     }
 
     private void KillTargets(TargetView targetView)
