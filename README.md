@@ -13,4 +13,5 @@ Kullanılan Yapılar
 12- GPU Optimizsayonu için Static Batching
 13 - Single-responsibility
 14- Interface segregation principle
-15- Dependency Injection
+16- New Input ve Old Input System
+17- Character Controller
