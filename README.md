@@ -15,3 +15,5 @@ Kullanılan Yapılar
 14- Interface segregation principle
 16- New Input ve Old Input System
 17- Character Controller
+18- NavMeshAgent
+19- StateMachineBehaviour
