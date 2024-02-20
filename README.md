@@ -22,7 +22,7 @@ Bu oyunda amacımız 60 saniye içerisinde bir dalgada oluşan tüm zombileri za
 - 50'den fazla savaşılacak karakter
 ![Zombie2](https://github.com/Umuras/Kill-The-All-Zombies-Before-Too-Late/assets/49074939/1171f42d-e455-4f30-92d1-851ea142db70)
 
-###Oyun İçi Videolar
+### Oyun İçi Videolar
 - Ana Menü Video <br/>
 https://github.com/Umuras/Kill-The-All-Zombies-Before-Too-Late/assets/49074939/8279d3b8-9d0e-4e63-960a-9e980a103abe
 https://user-images.githubusercontent.com/49074939/8279d3b8-9d0e-4e63-960a-9e980a103abe
