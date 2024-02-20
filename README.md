@@ -22,35 +22,40 @@ Bu oyunda amacımız 60 saniye içerisinde bir dalgada oluşan tüm zombileri za
 - 50'den fazla savaşılacak karakter
 ![Zombie2](https://github.com/Umuras/Kill-The-All-Zombies-Before-Too-Late/assets/49074939/1171f42d-e455-4f30-92d1-851ea142db70)
 
-Oyun İçi Videolar
-- Ana Menü
+###Oyun İçi Videolar
+- Ana Menü Video <br/>
 https://github.com/Umuras/Kill-The-All-Zombies-Before-Too-Late/assets/49074939/8279d3b8-9d0e-4e63-960a-9e980a103abe
+- Training Level Oynanış ve Zombies Coming Ekranı Video <br/>
+https://github.com/Umuras/Kill-The-All-Zombies-Before-Too-Late/assets/49074939/f90c2a62-64db-4abe-800e-27bb078fd462
+- MainStage Oynanış Video Bölüm 1 <br/>
+https://github.com/Umuras/Kill-The-All-Zombies-Before-Too-Late/assets/49074939/b9809c8e-df05-47bc-b9ee-d1ec0db76d00
+- MainStage Oynanış Video Bölüm 2 <br/>
+https://github.com/Umuras/Kill-The-All-Zombies-Before-Too-Late/assets/49074939/336dbfcc-67e3-4db0-a6a8-7cbe6eb93b3e
+- MainStage Oynanış Video Bölüm 3 <br/>
+https://github.com/Umuras/Kill-The-All-Zombies-Before-Too-Late/assets/49074939/b89f5684-a4a3-4676-b5ce-9e80cefe8716
+- MainStage Oynanış Video Bölüm 4 <br/>
+https://github.com/Umuras/Kill-The-All-Zombies-Before-Too-Late/assets/49074939/a91f1be1-8cec-4324-ac34-a400c8d7a1da
+- MainStage Oynanış Video Bölüm 5 <br/>
+https://github.com/Umuras/Kill-The-All-Zombies-Before-Too-Late/assets/49074939/fbb6680e-2d98-47ee-ad16-de9603fb62fa
+- MainStage Oynanış Video Bölüm 6 <br/>
+https://github.com/Umuras/Kill-The-All-Zombies-Before-Too-Late/assets/49074939/d02a8fbc-6d40-4d4c-b4f7-c10f5ac6722f
 
-
-
-
-
-
-
-
-
-
-Kullanılan Yapılar
-1- Strange IOC
-2- Dotween
-3- Addressables
-4- Scriptable Objects
-5- Promise
-6- Await Task Yapısı
-7- Observer Pattern
-8- Singleton Pattern
-9- Strategy Pattern
-10- Cinemachine
-11- Post Processing
-12- GPU Optimizsayonu için Static Batching
-13 - Single-responsibility
-14- Interface segregation principle
-16- New Input ve Old Input System
-17- Character Controller
-18- NavMeshAgent
-19- StateMachineBehaviour
+### Oyun İçerisinde Kullanılan Yapılar
+- Strange IOC
+- Dotween
+- Addressables
+- Scriptable Objects
+- Promise
+- Await Task Yapısı
+- Observer Pattern
+- Singleton Pattern
+- Strategy Pattern
+- Cinemachine
+- Post Processing
+- GPU Optimizsayonu için Static Batching
+- Single-responsibility
+- Interface segregation principle
+- New Input ve Old Input System
+- Character Controller
+- NavMeshAgent
+- StateMachineBehaviour
