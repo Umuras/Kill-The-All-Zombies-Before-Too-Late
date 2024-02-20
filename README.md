@@ -7,7 +7,7 @@ Bu oyunda amacımız 60 saniye içerisinde bir dalgada oluşan tüm zombileri za
 ![Training Level](https://github.com/Umuras/Kill-The-All-Zombies-Before-Too-Late/assets/49074939/394a456d-de22-4dc5-82c0-e9b8c867bfa4)
 - MainStage
 ![MainStage](https://github.com/Umuras/Kill-The-All-Zombies-Before-Too-Late/assets/49074939/b3a5a2a8-f20b-4515-9082-f317bf1e2b73)
-- Mermi Yükseltmesi (Karakter mermiğe değdiğinde hangi silahı kullanıyorsa o silahın mermisi ve şarjörü tamamlanıyor)
+- Mermi Yükseltmesi (Karakter mermiğe değdiğinde hangi silahı kullanıyorsa o silahın mermisi ve şarjörü tamamlanıyor) <br/>
 ![AmmoNew](https://github.com/Umuras/Kill-The-All-Zombies-Before-Too-Late/assets/49074939/7eef8ee7-5cf5-46d4-a06c-d44b29c99269)
 - Hız Yükseltmesi (Karakter hız yükseltmesine değdiğinde 20 saniye boyunca hızı 2 katına çıkıyor, eğer süre bitmeden tekrar değerse sadece süre 20'ye tamamlanıyor) <br/>
 ![2xSpeed2](https://github.com/Umuras/Kill-The-All-Zombies-Before-Too-Late/assets/49074939/1b2f767a-540c-43f1-80a6-6e39a8283683)
