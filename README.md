@@ -59,3 +59,6 @@ https://github.com/Umuras/Kill-The-All-Zombies-Before-Too-Late/assets/49074939/d
 - Character Controller
 - NavMeshAgent
 - StateMachineBehaviour
+
+### Linkedin Link <br/>
+https://www.linkedin.com/in/ali-umur-kucur-2190911b6/
