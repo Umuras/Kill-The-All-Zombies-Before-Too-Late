@@ -53,6 +53,7 @@ public class PortalMediator : EventMediator
     private void PlayMainStageInfoMusic()
     {
         gameMusicManagerModel.audioSource.clip = gameMusicManagerModel.mainStageInfoClip;
+        gameMusicManagerModel.audioSource.loop = false;
         gameMusicManagerModel.audioSource.Play();
     }
 
