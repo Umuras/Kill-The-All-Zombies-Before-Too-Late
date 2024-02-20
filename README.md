@@ -60,5 +60,6 @@ https://github.com/Umuras/Kill-The-All-Zombies-Before-Too-Late/assets/49074939/d
 - NavMeshAgent
 - StateMachineBehaviour
 
-### Linkedin Link <br/>
-https://www.linkedin.com/in/ali-umur-kucur-2190911b6/
+## ***🔗 My Linkedin Account***
+<a href="https://www.linkedin.com/in/ali-umur-kucur-2190911b6/" target="_blank">
+<img src=https://img.shields.io/badge/linkedin-%231E77B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white alt=linkedin style="margin-bottom: 5px;"height="25" />
