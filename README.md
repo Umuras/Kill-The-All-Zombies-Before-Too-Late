@@ -25,7 +25,6 @@ Bu oyunda amacımız 60 saniye içerisinde bir dalgada oluşan tüm zombileri za
 ### Oyun İçi Videolar
 - Ana Menü Video <br/>
 https://github.com/Umuras/Kill-The-All-Zombies-Before-Too-Late/assets/49074939/8279d3b8-9d0e-4e63-960a-9e980a103abe
-https://user-images.githubusercontent.com/49074939/8279d3b8-9d0e-4e63-960a-9e980a103abe
 - Training Level Oynanış ve Zombies Coming Ekranı Video <br/>
 https://github.com/Umuras/Kill-The-All-Zombies-Before-Too-Late/assets/49074939/f90c2a62-64db-4abe-800e-27bb078fd462
 - MainStage Oynanış Video Bölüm 1 <br/>
