@@ -7,7 +7,6 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using static UnityEditor.AddressableAssets.Build.Layout.BuildLayout;
 
 public class BundleModel : IBundleModel
 {

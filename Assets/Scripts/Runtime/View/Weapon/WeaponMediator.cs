@@ -1,9 +1,5 @@
 using strange.extensions.mediation.impl;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Search;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public enum WeaponEvent
 {

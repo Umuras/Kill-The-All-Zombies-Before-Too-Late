@@ -1,10 +1,5 @@
-using DG.Tweening;
-using strange.extensions.context.api;
-using strange.extensions.mediation.impl;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using UnityEditor.Search;
 using UnityEngine;
 
 public class WeaponModel : IWeaponModel
